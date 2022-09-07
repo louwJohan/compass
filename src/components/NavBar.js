@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const NavBar = () => {
   return (
     <div>
-      <Link to="/">
+      <Link to="/" className="text-center">
         <h1>Compass</h1>
       </Link>
       <Navbar

@@ -1,4 +1,4 @@
-import "./App.css";
+import styles from "./App.module.css";
 import NavBar from "./components/NavBar";
 import SignInForm from "./pages/auth/SignInForm";
 import SignUpForm from "./pages/auth/SignUpForm";
@@ -8,7 +8,7 @@ import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
+    <div className={styles.App}>
       <NavBar />
 
       <Container>

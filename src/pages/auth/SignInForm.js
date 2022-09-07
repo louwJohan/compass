@@ -5,8 +5,8 @@ import Form from "react-bootstrap/Form";
 const SignInForm = () => {
   return (
     <div>
-      <h1>Sign In</h1>
-      <Form>
+      <h1 className="text-center">Sign In</h1>
+      <Form className="text-center">
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control type="email" placeholder="Enter email" />
