@@ -38,7 +38,7 @@ const Slider = () => {
 
           <Carousel.Caption>
             <h3>Rent</h3>
-            <p>Rent the place you always dreamed of.</p>
+            <p>Find the place for you.</p>
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
