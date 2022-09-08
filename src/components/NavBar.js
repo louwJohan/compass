@@ -11,12 +11,7 @@ const NavBar = () => {
       <Link to="/" className="text-center">
         <h1>Compass</h1>
       </Link>
-      <Navbar
-        className={styles.NavBar}
-        collapseOnSelect
-        expand="lg"
-        variant="dark"
-      >
+      <Navbar className={styles.NavBar} collapseOnSelect expand="lg">
         <Container>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">

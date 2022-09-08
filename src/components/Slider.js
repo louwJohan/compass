@@ -1,6 +1,7 @@
 import React from "react";
 import Carousel from "react-bootstrap/Carousel";
 import styles from "../styles/Slider.module.css";
+import { Link } from "react-router-dom";
 
 const Slider = () => {
   return (
@@ -13,8 +14,12 @@ const Slider = () => {
             alt="First slide"
           />
           <Carousel.Caption>
-            <h3>Buy</h3>
-            <p>Find the perfect house</p>
+            <Link to="/buy">
+              <div className={styles.caption}>
+                <h3>Buy</h3>
+                <p>Find the perfect house</p>
+              </div>
+            </Link>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
@@ -25,8 +30,12 @@ const Slider = () => {
           />
 
           <Carousel.Caption>
-            <h3>Sell</h3>
-            <p>Sell your property with Compass</p>
+            <Link to="/sell">
+              <div className={styles.caption}>
+                <h3>Sell</h3>
+                <p>Sell your property with Compass</p>
+              </div>
+            </Link>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
@@ -37,8 +46,12 @@ const Slider = () => {
           />
 
           <Carousel.Caption>
-            <h3>Rent</h3>
-            <p>Find the place for you.</p>
+            <Link to="/rent">
+              <div className={styles.caption}>
+                <h3>Rent</h3>
+                <p>Find the place for you.</p>
+              </div>
+            </Link>
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>

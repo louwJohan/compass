@@ -5,6 +5,7 @@ import SignUpForm from "./pages/auth/SignUpForm";
 import Home from "./pages/home/Home";
 import Container from "react-bootstrap/Container";
 import { Route, Routes } from "react-router-dom";
+import "./api/axiosDefaults";
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
           <Route exact path="/signup" element={<SignUpForm />} />
         </Routes>
       </Container>
+      <hr></hr>
+      <Container></Container>
     </div>
   );
 }
