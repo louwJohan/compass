@@ -17,6 +17,7 @@ const SignUpForm = () => {
   const [errors, setErrors] = useState({});
   const { username, password1, password2 } = signUpData;
   const navigate = useNavigate();
+
   const handleChange = (event) => {
     setSignUpData({
       ...signUpData,

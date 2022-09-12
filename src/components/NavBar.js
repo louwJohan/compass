@@ -4,8 +4,50 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import styles from "../styles/NavBar.module.css";
 import { Link } from "react-router-dom";
+import axios from "axios";
+
+import {
+  useCurrentUser,
+  useSetCurrentUser,
+} from "../context/CurrentUserContext";
 
 const NavBar = () => {
+  const currentUser = useCurrentUser();
+  const setCurrentUser = useSetCurrentUser();
+
+  const handleSignOut = async () => {
+    try {
+      await axios.post("dj-rest-auth/logout/");
+      setCurrentUser(null);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const LoggedIn = (
+    <>
+      <Nav>
+        <Link className="text-dark" to="">
+          Saved
+        </Link>
+        <Link className="text-dark" to="/" onClick={handleSignOut}>
+          Sign Out
+        </Link>
+      </Nav>
+    </>
+  );
+  const LoggedOut = (
+    <>
+      <Nav>
+        <Link className="text-dark" to="/signin">
+          Sign In
+        </Link>
+        <Link className="text-dark" to="/signup">
+          Sign Up
+        </Link>
+      </Nav>
+    </>
+  );
   return (
     <div>
       <Link to="/" className="text-center">
@@ -29,15 +71,7 @@ const NavBar = () => {
                 Rent
               </Link>
             </Nav>
-            <Nav>
-              <Link className="text-dark" to="/signin">
-                <i className="fa-solid fa-right-to-bracket"></i>
-                Sign In
-              </Link>
-              <Link className="text-dark" to="/signup">
-                Sign Up
-              </Link>
-            </Nav>
+            {currentUser ? LoggedIn : LoggedOut}
           </Navbar.Collapse>
         </Container>
       </Navbar>

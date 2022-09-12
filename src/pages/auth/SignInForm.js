@@ -7,8 +7,10 @@ import Col from "react-bootstrap/Col";
 import styles from "../../styles/SignInForm.module.css";
 import { useNavigate } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
+import { useSetCurrentUser } from "../../context/CurrentUserContext";
 
 const SignInForm = () => {
+  const setCurrentUser = useSetCurrentUser();
   const [signInData, setSignInData] = useState({
     username: "",
     password: "",
@@ -17,6 +19,7 @@ const SignInForm = () => {
   const [errors, setErrors] = useState({});
   const { username, password } = signInData;
   const navigate = useNavigate();
+
   const handleChange = (event) => {
     setSignInData({
       ...signInData,
@@ -27,7 +30,8 @@ const SignInForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post("/dj-rest-auth/login/", signInData);
+      const { data } = await axios.post("/dj-rest-auth/login/", signInData);
+      setCurrentUser(data.user);
       console.log("posted");
       navigate("/home");
     } catch (err) {
