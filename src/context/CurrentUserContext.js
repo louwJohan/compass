@@ -1,4 +1,4 @@
-import { createContext, useEffect, useMemo, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import { axiosRes } from "../api/axiosDefaults";
 import { useNavigate } from "react-router";
@@ -6,8 +6,8 @@ import { useNavigate } from "react-router";
 export const CurrentUserContext = createContext();
 export const SetCurrentUserContext = createContext();
 
-export const useCurrentUser = () => createContext(CurrentUserContext);
-export const useSetCurrentUser = () => createContext(SetCurrentUserContext);
+export const useCurrentUser = () => useContext(CurrentUserContext);
+export const useSetCurrentUser = () => useContext(SetCurrentUserContext);
 
 export const CurrentUserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
