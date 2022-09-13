@@ -3,7 +3,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import styles from "../styles/NavBar.module.css";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import axios from "axios";
 
 import {
@@ -26,50 +26,48 @@ const NavBar = () => {
 
   const LoggedIn = (
     <>
-      <Nav>
-        <Link className="text-dark" to="">
-          Saved
-        </Link>
-        <Link className="text-dark" to="/" onClick={handleSignOut}>
-          Sign Out
-        </Link>
-      </Nav>
+      <NavLink className="text-dark" to="">
+        Saved
+      </NavLink>
+      <NavLink className="text-dark" to="/" onClick={handleSignOut}>
+        Sign Out
+      </NavLink>
     </>
   );
   const LoggedOut = (
     <>
       <Nav>
-        <Link className="text-dark" to="/signin">
+        <NavLink className="text-dark" to="/signin">
           Sign In
-        </Link>
-        <Link className="text-dark" to="/signup">
+        </NavLink>
+        <NavLink className="text-dark" to="/signup">
           Sign Up
-        </Link>
+        </NavLink>
       </Nav>
     </>
   );
   return (
     <div>
-      <Link to="/" className="text-center">
+      <NavLink to="/" className="text-center">
         <h1>Compass</h1>
-      </Link>
+      </NavLink>
       <Navbar className={styles.NavBar} collapseOnSelect expand="lg">
         <Container>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <Link className="text-dark" to="/">
+              <NavLink className="text-dark" to="/">
                 Home
-              </Link>
-              <Link className="text-dark" to="/buy">
+              </NavLink>
+              <NavLink className="text-dark" to="/buy">
                 Buy
-              </Link>
-              <Link className="text-dark" to="/sell">
+              </NavLink>
+              <NavLink className="text-dark" to="/sell">
                 Sell
-              </Link>
-              <Link className="text-dark" to="/rent">
+              </NavLink>
+              <NavLink className="text-dark" to="/rent">
                 Rent
-              </Link>
+              </NavLink>
             </Nav>
             {currentUser ? LoggedIn : LoggedOut}
           </Navbar.Collapse>

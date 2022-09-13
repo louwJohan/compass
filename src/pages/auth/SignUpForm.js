@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import styles from "../../styles/SignUpForm.module.css";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router";
 import axios from "axios";
 import Alert from "react-bootstrap/Alert";
 
@@ -16,7 +16,7 @@ const SignUpForm = () => {
   });
   const [errors, setErrors] = useState({});
   const { username, password1, password2 } = signUpData;
-  const navigate = useNavigate();
+  const history = useHistory();
 
   const handleChange = (event) => {
     setSignUpData({
@@ -30,7 +30,7 @@ const SignUpForm = () => {
     try {
       await axios.post("/dj-rest-auth/registration/", signUpData);
       console.log("posted");
-      navigate("/signin");
+      history.push("/signin");
     } catch (err) {
       setErrors(err.response?.data);
       console.log(err.message);
