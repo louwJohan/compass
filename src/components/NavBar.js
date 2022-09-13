@@ -4,12 +4,11 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
-import axios from "axios";
-
 import {
   useCurrentUser,
   useSetCurrentUser,
 } from "../context/CurrentUserContext";
+import axios from "axios";
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
@@ -26,12 +25,14 @@ const NavBar = () => {
 
   const LoggedIn = (
     <>
-      <NavLink className="text-dark" to="">
-        Saved
-      </NavLink>
-      <NavLink className="text-dark" to="/" onClick={handleSignOut}>
-        Sign Out
-      </NavLink>
+      <Nav>
+        <NavLink className="text-dark" to="">
+          Saved
+        </NavLink>
+        <NavLink className="text-dark" to="/" onClick={handleSignOut}>
+          Sign out
+        </NavLink>
+      </Nav>
     </>
   );
   const LoggedOut = (

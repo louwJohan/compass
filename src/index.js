@@ -8,13 +8,11 @@ import { CurrentUserProvider } from "./context/CurrentUserContext";
 
 // const root = ReactDOM.createRoot(document.getElementById("root"));
 ReactDOM.render(
-  <React.StrictMode>
-    <Router>
-      <CurrentUserProvider>
-        <App />
-      </CurrentUserProvider>
-    </Router>
-  </React.StrictMode>,
+  <Router>
+    <CurrentUserProvider>
+      <App />
+    </CurrentUserProvider>
+  </Router>,
   document.getElementById("root")
 );
 
