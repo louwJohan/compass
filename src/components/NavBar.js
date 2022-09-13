@@ -9,6 +9,7 @@ import {
   useSetCurrentUser,
 } from "../context/CurrentUserContext";
 import axios from "axios";
+import Avatar from "./Avatar";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 
 const NavBar = () => {
@@ -38,6 +39,9 @@ const NavBar = () => {
         <NavLink className="text-dark" to="/" onClick={handleSignOut}>
           Sign out
         </NavLink>
+        <NavLink to="/profile" className="ml-auto">
+          <Avatar src={currentUser?.profile_image} text="Profile" height={40} />
+        </NavLink>
       </Nav>
     </>
   );
@@ -66,6 +70,7 @@ const NavBar = () => {
       <NavLink to="/" className="text-center">
         <h1>Compass</h1>
       </NavLink>
+
       <Navbar
         className={styles.NavBar}
         expanded={expanded}
