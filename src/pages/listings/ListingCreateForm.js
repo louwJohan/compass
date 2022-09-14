@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import { axiosReq } from "../../api/axiosDefaults";
 
 const ListingCreateForm = () => {
-  const [formData, setFormData] = useState({
+  const [listingData, setListingData] = useState({
     title: "",
     description: "",
     type_of_property: "",
@@ -12,7 +12,7 @@ const ListingCreateForm = () => {
     area: "",
     price: 0,
     commerce_type: "Sell",
-    image_one: "",
+    // image_one: "",
   });
 
   const {
@@ -23,30 +23,39 @@ const ListingCreateForm = () => {
     area,
     price,
     commerce_type,
-    image_one,
-  } = formData;
+    // image_one,
+  } = listingData;
 
   const imageInput = useRef(null);
 
   const handleChange = (event) => {
-    setFormData({
-      ...formData,
+    setListingData({
+      ...listingData,
       [event.target.name]: event.target.value,
     });
   };
 
-  const handleChangeImage = (event) => {
-    if (event.target.files.length) {
-      setFormData({
-        ...formData,
-        image_one: URL.createObjectURL(event.target.files[0]),
-      });
-    }
-  };
+  // const handleChangeImage = (event) => {
+  //   if (event.target.files.length) {
+  //     setFormData({
+  //       ...formData,
+  //       image_one: URL.createObjectURL(event.target.files[0]),
+  //     });
+  //   }
+  // };
 
   const handleSubmit = async (event) => {
-    console.log(formData);
+    console.log(listingData);
     event.preventDefault();
+    const formData = new FormData();
+
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("type_of_property", type_of_property);
+    formData.append("bedrooms", bedrooms);
+    formData.append("area", area);
+    formData.append("price", price);
+    formData.append("commerce_type", commerce_type);
     try {
       console.log(formData);
       await axiosReq.post("/listings/", formData);
@@ -143,7 +152,7 @@ const ListingCreateForm = () => {
               <option>Rent</option>
             </Form.Control>
           </Form.Group>
-          <Form.Group className="text-center">
+          {/* <Form.Group className="text-center">
             <Form.Label
               className="d-flex justify-content-center"
               htmlFor="image-upload"
@@ -154,7 +163,7 @@ const ListingCreateForm = () => {
               onChange={handleChangeImage}
               ref={imageInput}
             />
-          </Form.Group>
+          </Form.Group> */}
 
           <Button variant="primary" type="submit" className="mt-5">
             Submit
