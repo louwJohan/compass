@@ -6,6 +6,7 @@ import Home from "./pages/home/Home";
 import Container from "react-bootstrap/Container";
 import { Route, Switch } from "react-router-dom";
 import "./api/axiosDefaults";
+import Sell from "./pages/listings/Sell";
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
         <Switch>
           <Route exact path="/" render={() => <Home />} />
           <Route exact path="/buy" render={() => <h1>Buy</h1>} />
-          <Route exact path="/sell" render={() => <h1>Sell</h1>} />
+          <Route exact path="/sell" render={() => <Sell />} />
           <Route exact path="/rent" render={() => <h1>Rent</h1>} />
           <Route exact path="/signin" render={() => <SignInForm />} />
           <Route exact path="/signup" render={() => <SignUpForm />} />
