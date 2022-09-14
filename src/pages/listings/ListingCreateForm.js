@@ -11,15 +11,8 @@ const ListingCreateForm = () => {
     bedrooms: 0,
     area: "",
     price: 0,
-    commerce_type: "",
+    commerce_type: "Sell",
     image_one: "",
-    image_two: "",
-    image_three: "",
-    image_four: "",
-    image_five: "",
-    image_six: "",
-    image_seven: "",
-    image_eight: "",
   });
 
   const {
@@ -31,13 +24,6 @@ const ListingCreateForm = () => {
     price,
     commerce_type,
     image_one,
-    image_two,
-    image_three,
-    image_four,
-    image_five,
-    image_six,
-    image_seven,
-    image_eight,
   } = formData;
 
   const imageInput = useRef(null);
@@ -57,20 +43,12 @@ const ListingCreateForm = () => {
       });
     }
   };
+
   const handleSubmit = async (event) => {
+    console.log(formData);
     event.preventDefault();
-    const formData = new FormData();
-
-    formData.append("title", title);
-    formData.append("description", description);
-    formData.append("type_of_property", type_of_property);
-    formData.append("bedrooms", bedrooms);
-    formData.append("area", area);
-    formData.append("price", price);
-    formData.append("commerce_type", commerce_type);
-    formData.append("image_one", imageInput.current.files[0]);
-
     try {
+      console.log(formData);
       await axiosReq.post("/listings/", formData);
     } catch (err) {
       console.log(err);
@@ -90,6 +68,7 @@ const ListingCreateForm = () => {
               placeholder="Title"
               onChange={handleChange}
               value={title}
+              name="title"
             />
             <Form.Text className="text-muted"></Form.Text>
           </Form.Group>
@@ -101,6 +80,7 @@ const ListingCreateForm = () => {
               placeholder="Description"
               onChange={handleChange}
               value={description}
+              name="description"
             />
           </Form.Group>
           <Form.Group controlId="type_of_property">
@@ -109,7 +89,9 @@ const ListingCreateForm = () => {
               as="select"
               onChange={handleChange}
               value={type_of_property}
+              name="type_of_property"
             >
+              <option></option>
               <option>Detached House</option>
               <option>Terrace House</option>
               <option>Apartment</option>
@@ -125,6 +107,7 @@ const ListingCreateForm = () => {
               placeholder="Number of Bedrooms"
               onChange={handleChange}
               value={bedrooms}
+              name="bedrooms"
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="area">
@@ -134,6 +117,7 @@ const ListingCreateForm = () => {
               placeholder="Area"
               onChange={handleChange}
               value={area}
+              name="area"
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="price">
@@ -144,6 +128,7 @@ const ListingCreateForm = () => {
               placeholder="Price"
               onChange={handleChange}
               value={price}
+              name="price"
             />
           </Form.Group>
           <Form.Group controlId="commerce_type">
@@ -152,99 +137,25 @@ const ListingCreateForm = () => {
               as="select"
               onChange={handleChange}
               value={commerce_type}
+              name="commerce_type"
             >
               <option>Sell</option>
               <option>Rent</option>
             </Form.Control>
           </Form.Group>
+          <Form.Group className="text-center">
+            <Form.Label
+              className="d-flex justify-content-center"
+              htmlFor="image-upload"
+            ></Form.Label>
+            <Form.File
+              id="image-upload"
+              accept="image/*"
+              onChange={handleChangeImage}
+              ref={imageInput}
+            />
+          </Form.Group>
 
-          <Form.Group className="text-center">
-            <Form.Label
-              className="d-flex justify-content-center"
-              htmlFor="image-upload"
-              onChange={handleChangeImage}
-              value={image_one}
-            ></Form.Label>
-            <Form.File
-              id="image-upload"
-              accept="image/*"
-              onChange={handleChangeImage}
-              value={image_two}
-            />
-          </Form.Group>
-          <Form.Group className="text-center">
-            <Form.Label
-              className="d-flex justify-content-center"
-              htmlFor="image-upload"
-              onChange={handleChangeImage}
-              value={image_three}
-            ></Form.Label>
-            <Form.File
-              id="image-upload"
-              accept="image/*"
-              onChange={handleChangeImage}
-              value={image_four}
-            />
-          </Form.Group>
-          <Form.Group className="text-center">
-            <Form.Label
-              className="d-flex justify-content-center"
-              htmlFor="image-upload"
-              onChange={handleChangeImage}
-              value={image_five}
-            ></Form.Label>
-            <Form.File
-              id="image-upload"
-              accept="image/*"
-              onChange={handleChangeImage}
-              value={image_six}
-            />
-          </Form.Group>
-          <Form.Group className="text-center">
-            <Form.Label
-              className="d-flex justify-content-center"
-              htmlFor="image-upload"
-            ></Form.Label>
-            <Form.File
-              id="image-upload"
-              accept="image/*"
-              onChange={handleChangeImage}
-              value={image_seven}
-            />
-          </Form.Group>
-          <Form.Group className="text-center">
-            <Form.Label
-              className="d-flex justify-content-center"
-              htmlFor="image-upload"
-            ></Form.Label>
-            <Form.File
-              id="image-upload"
-              accept="image/*"
-              onChange={handleChangeImage}
-              value={image_eight}
-            />
-          </Form.Group>
-          <Form.Group className="text-center">
-            <Form.Label
-              className="d-flex justify-content-center"
-              htmlFor="image-upload"
-            ></Form.Label>
-            <Form.File id="image-upload" accept="image/*" />
-          </Form.Group>
-          <Form.Group className="text-center">
-            <Form.Label
-              className="d-flex justify-content-center"
-              htmlFor="image-upload"
-            ></Form.Label>
-            <Form.File id="image-upload" accept="image/*" />
-          </Form.Group>
-          <Form.Group className="text-center">
-            <Form.Label
-              className="d-flex justify-content-center"
-              htmlFor="image-upload"
-            ></Form.Label>
-            <Form.File id="image-upload" accept="image/*" />
-          </Form.Group>
           <Button variant="primary" type="submit" className="mt-5">
             Submit
           </Button>
