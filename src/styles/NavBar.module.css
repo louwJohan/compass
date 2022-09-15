@@ -25,3 +25,7 @@ h1 {
     text-decoration: underline;
 }
 
+.Navlink {
+    text-decoration: none;
+    color: black;
+}

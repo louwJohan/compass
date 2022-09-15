@@ -7,6 +7,7 @@ import Container from "react-bootstrap/Container";
 import { Route, Switch } from "react-router-dom";
 import "./api/axiosDefaults";
 import Sell from "./pages/listings/Sell";
+import ListingListDisplay from "./pages/listings/ListingListDisplay";
 
 function App() {
   return (
@@ -16,11 +17,12 @@ function App() {
       <Container>
         <Switch>
           <Route exact path="/" render={() => <Home />} />
-          <Route exact path="/buy" render={() => <h1>Buy</h1>} />
+          <Route exact path="/buy" render={() => <ListingListDisplay />} />
           <Route exact path="/sell" render={() => <Sell />} />
           <Route exact path="/rent" render={() => <h1>Rent</h1>} />
           <Route exact path="/signin" render={() => <SignInForm />} />
           <Route exact path="/signup" render={() => <SignUpForm />} />
+          <Route exact path="/profile" render={() => <h1>Profile</h1>} />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>
