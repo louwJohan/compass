@@ -51,7 +51,8 @@ const Listing = (props) => {
 
   const handleUnSave = async () => {
     try {
-      await axiosRes.delete(`/saved/${saved_id}/`);
+      console.log(saved_id);
+      await axiosRes.delete(`/saved/${saved_id}`);
       setListings((prevListing) => ({
         ...prevListing,
         results: prevListing.results.map((listing) => {
