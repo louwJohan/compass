@@ -33,7 +33,7 @@ const NavBar = () => {
           activeClassName={styles.Active}
           to="/saved"
         >
-          Saved
+          <i className="fas fa-regular fa-bookmark"></i> Saved
         </NavLink>
         <NavLink className="text-dark" to="/" onClick={handleSignOut}>
           Sign out

@@ -1,6 +1,8 @@
 import React from "react";
 import { useCurrentUser } from "../../context/CurrentUserContext";
-import { Carousel, Col, Row } from "react-bootstrap";
+import { Carousel, Col, OverlayTrigger, Row, Tooltip } from "react-bootstrap";
+import styles from "../../styles/Listing.module.css";
+import { axiosRes } from "../../api/axiosDefaults";
 
 const Listing = (props) => {
   const {
@@ -21,12 +23,54 @@ const Listing = (props) => {
     image_seven,
     image_eight,
     updated_at,
+    saved_id,
+    setListings,
+    saved_count,
   } = props;
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+  const handleSave = async () => {
+    try {
+      const { data } = await axiosRes.post("/saved/", { listing: id });
+      setListings((prevListing) => ({
+        ...prevListing,
+        results: prevListing.results.map((listing) => {
+          return listing.id === id
+            ? {
+                ...listing,
+                saved_count: listing.saved_count + 1,
+                saved_id: data.id,
+              }
+            : listing;
+        }),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleUnSave = async () => {
+    try {
+      await axiosRes.delete(`/saved/${saved_id}/`);
+      setListings((prevListing) => ({
+        ...prevListing,
+        results: prevListing.results.map((listing) => {
+          return listing.id === id
+            ? {
+                ...listing,
+                saved_count: listing.saved_count - 1,
+                saved_id: null,
+              }
+            : listing;
+        }),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
-    <>
+    <div>
       <Row>
         <Col>
           <Carousel variant="dark">
@@ -114,9 +158,35 @@ const Listing = (props) => {
           <hr></hr>
           <p>{updated_at}</p>
           <hr></hr>
+          <div>
+            {is_owner ? (
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip>You can't save your own listing!</Tooltip>}
+              >
+                <i className={`fas fa-regular fa-bookmark ${styles.Save}`}></i>
+              </OverlayTrigger>
+            ) : saved_id ? (
+              <span onClick={handleUnSave}>
+                <i className={`fas fa-regular fa-bookmark ${styles.Save}`}></i>
+              </span>
+            ) : currentUser ? (
+              <span onClick={handleSave}>
+                <i className={`fas fa-regular fa-bookmark ${styles.Save}`}></i>
+              </span>
+            ) : (
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip>Log in to save this listing!</Tooltip>}
+              >
+                <i className={`fas fa-regular fa-bookmark ${styles.Save}`}></i>
+              </OverlayTrigger>
+            )}
+            <p>Saved: {saved_count}</p>
+          </div>
         </Col>
       </Row>
-    </>
+    </div>
   );
 };
 
