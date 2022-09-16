@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const Slider = () => {
   return (
     <div>
-      <Carousel fade>
+      <Carousel fade variant="dark">
         <Carousel.Item>
           <img
             className="d-block carousel"

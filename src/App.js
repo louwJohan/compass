@@ -8,6 +8,7 @@ import { Route, Switch } from "react-router-dom";
 import "./api/axiosDefaults";
 import Sell from "./pages/listings/Sell";
 import ListingListDisplay from "./pages/listings/ListingListDisplay";
+import ListingPage from "./pages/listings/ListingPage";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route exact path="/signin" render={() => <SignInForm />} />
           <Route exact path="/signup" render={() => <SignUpForm />} />
           <Route exact path="/profile" render={() => <h1>Profile</h1>} />
+          <Route exact path="/listing/:id" render={() => <ListingPage />} />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>
