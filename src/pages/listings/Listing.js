@@ -169,7 +169,7 @@ const Listing = (props) => {
               </OverlayTrigger>
             ) : saved_id ? (
               <span onClick={handleUnSave}>
-                <i className={`fas fa-regular fa-bookmark ${styles.Save}`}></i>
+                <i className={`fa fa-solid fa-check ${styles.Save}`}></i>
               </span>
             ) : currentUser ? (
               <span onClick={handleSave}>
