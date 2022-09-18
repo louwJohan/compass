@@ -9,8 +9,11 @@ import "./api/axiosDefaults";
 import Sell from "./pages/listings/Sell";
 import ListingListDisplay from "./pages/listings/ListingListDisplay";
 import ListingPage from "./pages/listings/ListingPage";
+import { useCurrentUser } from "./context/CurrentUserContext";
 
 function App() {
+  const currentUser = useCurrentUser();
+  const profile_id = currentUser?.profile_id || "";
   return (
     <div className={styles.App}>
       <NavBar />
@@ -18,9 +21,37 @@ function App() {
       <Container>
         <Switch>
           <Route exact path="/" render={() => <Home />} />
-          <Route exact path="/buy" render={() => <ListingListDisplay />} />
+          <Route
+            exact
+            path="/buy"
+            render={() => (
+              <ListingListDisplay
+                message="No results found. Adjust the search keyword or follow a user."
+                filter={`commerce_type=sell`}
+              />
+            )}
+          />
           <Route exact path="/sell" render={() => <Sell />} />
-          <Route exact path="/rent" render={() => <h1>Rent</h1>} />
+          <Route
+            exact
+            path="/rent"
+            render={() => (
+              <ListingListDisplay
+                message="No results found. Adjust the search keyword or follow a user."
+                filter={`commerce_type=rent`}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/saved"
+            render={() => (
+              <ListingListDisplay
+                message="No results found. Adjust the search keyword or follow a user."
+                filter={`saved__owner__profile=${profile_id}&ordering=-saved__created_at&`}
+              />
+            )}
+          />
           <Route exact path="/signin" render={() => <SignInForm />} />
           <Route exact path="/signup" render={() => <SignUpForm />} />
           <Route exact path="/profile" render={() => <h1>Profile</h1>} />

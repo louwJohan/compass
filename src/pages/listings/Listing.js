@@ -183,7 +183,7 @@ const Listing = (props) => {
                 <i className={`fas fa-regular fa-bookmark ${styles.Save}`}></i>
               </OverlayTrigger>
             )}
-            <p>Saved: {saved_count}</p>
+            <p>This Listing has been saved {saved_count} times</p>
           </div>
         </Col>
       </Row>

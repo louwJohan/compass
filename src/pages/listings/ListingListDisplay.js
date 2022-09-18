@@ -1,34 +1,61 @@
-import React from "react";
-import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router";
+import { axiosReq } from "../../api/axiosDefaults";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import Container from "react-bootstrap/Container";
+import Asset from "../../components/Asset";
+import NoResults from "../../assets/no-results.png";
+import Listing from "./Listing";
+import appStyles from "../../App.module.css";
 
-const ListingListDisplay = ({
-  title,
-  bedrooms,
-  type_of_property,
-  area,
-  price,
-}) => {
+const ListingListDisplay = ({ message, filter = "" }) => {
+  const [listings, setListings] = useState({ results: [] });
+  const [hasLoaded, setHasLoaded] = useState(false);
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    const fetchListings = async () => {
+      try {
+        const { data } = await axiosReq.get(`/listings/?${filter}`);
+        setListings(data);
+        setHasLoaded(true);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    setHasLoaded(false);
+    fetchListings();
+  }, [filter, pathname]);
   return (
     <div>
-      <Card style={{ width: "18rem" }}>
-        <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
-        <Card.Body>
-          <Card.Title>Card Title</Card.Title>
-          <Card.Text>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </Card.Text>
-        </Card.Body>
-        <ListGroup className="list-group-flush">
-          <ListGroupItem>Cras justo odio</ListGroupItem>
-          <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
-          <ListGroupItem>Vestibulum at eros</ListGroupItem>
-        </ListGroup>
-        <Card.Body>
-          <Card.Link href="#">Card Link</Card.Link>
-          <Card.Link href="#">Another Link</Card.Link>
-        </Card.Body>
-      </Card>
+      <Row className="h-100">
+        <Col className="py-2 p-0 p-lg-2" lg={8}>
+          <p>Popular profiles mobile</p>
+          {hasLoaded ? (
+            <>
+              {listings.results.length ? (
+                listings.results.map((listing) => (
+                  <Listing
+                    key={listing.id}
+                    {...listing}
+                    setListings={setListings}
+                  />
+                ))
+              ) : (
+                <Container className={appStyles.Content}>
+                  <Asset src={NoResults} message={message} />
+                </Container>
+              )}
+            </>
+          ) : (
+            <Container className={appStyles.Content}>
+              <Asset spinner />
+            </Container>
+          )}
+        </Col>
+      </Row>
     </div>
   );
 };
