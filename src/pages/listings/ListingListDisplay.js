@@ -6,18 +6,22 @@ import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Asset from "../../components/Asset";
 import NoResults from "../../assets/no-results.png";
-import Listing from "./Listing";
 import appStyles from "../../App.module.css";
+import { Form } from "react-bootstrap";
+import ListingCard from "./ListingCard";
 
 const ListingListDisplay = ({ message, filter = "" }) => {
   const [listings, setListings] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     const fetchListings = async () => {
       try {
-        const { data } = await axiosReq.get(`/listings/?${filter}`);
+        const { data } = await axiosReq.get(
+          `/listings/?${filter}&search=${query}`
+        );
         setListings(data);
         setHasLoaded(true);
       } catch (err) {
@@ -26,34 +30,54 @@ const ListingListDisplay = ({ message, filter = "" }) => {
     };
 
     setHasLoaded(false);
-    fetchListings();
-  }, [filter, pathname]);
+    const timer = setTimeout(() => {
+      fetchListings();
+    }, 1000);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [filter, query, pathname]);
   return (
     <div>
       <Row className="h-100">
-        <Col className="py-2 p-0 p-lg-2" lg={8}>
+        <Col className="py-2 p-0 p-lg-2">
           <p>Popular profiles mobile</p>
-          {hasLoaded ? (
-            <>
-              {listings.results.length ? (
-                listings.results.map((listing) => (
-                  <Listing
-                    key={listing.id}
-                    {...listing}
-                    setListings={setListings}
-                  />
-                ))
-              ) : (
-                <Container className={appStyles.Content}>
-                  <Asset src={NoResults} message={message} />
-                </Container>
-              )}
-            </>
-          ) : (
-            <Container className={appStyles.Content}>
-              <Asset spinner />
-            </Container>
-          )}
+          <i className={`fas fa-search`} />
+          <Form onSubmit={(event) => event.preventDefault()} className="mb-5">
+            <Form.Control
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              type="text"
+              className="mr-sm-2"
+              placeholder="Search listings"
+            />
+          </Form>
+          <Row>
+            {hasLoaded ? (
+              <>
+                {listings.results.length ? (
+                  listings.results.map((listing) => (
+                    <Col
+                      className="d-flex justify-content-center"
+                      lg={4}
+                      md={6}
+                      sm={12}
+                    >
+                      <ListingCard key={listing.id} {...listing} />
+                    </Col>
+                  ))
+                ) : (
+                  <Container className={appStyles.Content}>
+                    <Asset src={NoResults} message={message} />
+                  </Container>
+                )}
+              </>
+            ) : (
+              <Container className={appStyles.Content}>
+                <Asset spinner />
+              </Container>
+            )}
+          </Row>
         </Col>
       </Row>
     </div>

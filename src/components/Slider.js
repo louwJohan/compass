@@ -9,8 +9,8 @@ const Slider = () => {
       <Carousel fade variant="dark">
         <Carousel.Item>
           <img
-            className="d-block carousel"
-            src="https://res.cloudinary.com/dxwuotiow/image/upload/v1662542183/pexels-alex-andrews-833192_hunouf.jpg"
+            className={`d-block ${styles.carousel}`}
+            src="https://res.cloudinary.com/dxwuotiow/image/upload/v1663670909/pexels-pixabay-259588_kqdsi6.jpg"
             alt="First slide"
           />
           <Carousel.Caption>
@@ -24,8 +24,8 @@ const Slider = () => {
         </Carousel.Item>
         <Carousel.Item>
           <img
-            className="d-block carousel"
-            src="https://res.cloudinary.com/dxwuotiow/image/upload/v1662541988/pexels-terje-sollie-312029_czqzy4.jpg"
+            className={`d-block ${styles.carousel}`}
+            src="https://res.cloudinary.com/dxwuotiow/image/upload/v1663670909/pexels-pixabay-280229_fwr8gi.jpg"
             alt="Second slide"
           />
 
@@ -40,8 +40,8 @@ const Slider = () => {
         </Carousel.Item>
         <Carousel.Item>
           <img
-            className="d-block carousel"
-            src="https://res.cloudinary.com/dxwuotiow/image/upload/v1662539258/pexels-pixabay-460695_scl55x.jpg"
+            className={`d-block ${styles.carousel}`}
+            src="https://res.cloudinary.com/dxwuotiow/image/upload/v1663670909/pexels-binyamin-mellish-1396122_gdiblk.jpg"
             alt="Third slide"
           />
 

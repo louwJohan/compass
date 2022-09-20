@@ -1,6 +1,9 @@
-img {
+.carousel {
     margin:auto;
+    height: 600px;
+    width:900px;
     padding-top: 50px;
+    object-fit: cover;
 }
 
 .caption {

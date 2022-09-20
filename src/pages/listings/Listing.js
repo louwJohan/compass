@@ -1,8 +1,16 @@
 import React from "react";
 import { useCurrentUser } from "../../context/CurrentUserContext";
-import { Carousel, Col, OverlayTrigger, Row, Tooltip } from "react-bootstrap";
+import {
+  Carousel,
+  Col,
+  Container,
+  OverlayTrigger,
+  Row,
+  Tooltip,
+} from "react-bootstrap";
 import styles from "../../styles/Listing.module.css";
 import { axiosRes } from "../../api/axiosDefaults";
+import { NavLink } from "react-router-dom";
 
 const Listing = (props) => {
   const {
@@ -126,7 +134,7 @@ const Listing = (props) => {
             </Carousel.Item>
             <Carousel.Item>
               <img
-                className="d-block w-100"
+                className="d-block w-100 carousel-img"
                 src={image_eight}
                 alt="Third slide"
               />
@@ -183,10 +191,13 @@ const Listing = (props) => {
                 <i className={`fas fa-regular fa-bookmark ${styles.Save}`}></i>
               </OverlayTrigger>
             )}
-            <p>This Listing has been saved {saved_count} times</p>
+            <p>Saved: {saved_count}</p>
           </div>
         </Col>
       </Row>
+      <Container>
+        <NavLink to="/buy">Back to Listings</NavLink>
+      </Container>
     </div>
   );
 };

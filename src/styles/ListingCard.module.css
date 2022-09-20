@@ -1,0 +1,12 @@
+.Card {
+    display: flex;
+    
+}
+
+a {
+    color: black;
+}
+
+a:hover {
+    text-decoration: underline;
+}
