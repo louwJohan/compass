@@ -1,6 +1,7 @@
 import React from "react";
 import { useCurrentUser } from "../../context/CurrentUserContext";
 import {
+  Button,
   Carousel,
   Col,
   Container,
@@ -10,7 +11,7 @@ import {
 } from "react-bootstrap";
 import styles from "../../styles/Listing.module.css";
 import { axiosRes } from "../../api/axiosDefaults";
-import { NavLink } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const Listing = (props) => {
   const {
@@ -37,6 +38,7 @@ const Listing = (props) => {
   } = props;
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+  const history = useHistory();
   const handleSave = async () => {
     try {
       const { data } = await axiosRes.post("/saved/", { listing: id });
@@ -196,7 +198,7 @@ const Listing = (props) => {
         </Col>
       </Row>
       <Container>
-        <NavLink to="/buy">Back to Listings</NavLink>
+        <Button onClick={() => history.goBack()}>Back</Button>
       </Container>
     </div>
   );
