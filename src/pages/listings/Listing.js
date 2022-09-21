@@ -12,6 +12,7 @@ import {
 import styles from "../../styles/Listing.module.css";
 import { axiosRes } from "../../api/axiosDefaults";
 import { useHistory } from "react-router-dom";
+import { EditDropdown } from "../../components/EditDropdown";
 
 const Listing = (props) => {
   const {
@@ -35,6 +36,7 @@ const Listing = (props) => {
     saved_id,
     setListings,
     saved_count,
+    listingPage,
   } = props;
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
@@ -54,6 +56,19 @@ const Listing = (props) => {
             : listing;
         }),
       }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleEdit = () => {
+    history.push(`/listings/${id}/edit`);
+  };
+
+  const handleDelete = async () => {
+    try {
+      await axiosRes.delete(`/listings/${id}`);
+      history.goBack();
     } catch (err) {
       console.log(err);
     }
@@ -144,7 +159,10 @@ const Listing = (props) => {
           </Carousel>
         </Col>
         <Col>
-          <h3>{title}</h3>
+          <p>{title}</p>
+          {is_owner && listingPage && (
+            <EditDropdown handleEdit={handleEdit} handleDelete={handleDelete} />
+          )}
           <hr></hr>
           <p>{description}</p>
           <hr></hr>
@@ -179,11 +197,13 @@ const Listing = (props) => {
               </OverlayTrigger>
             ) : saved_id ? (
               <span onClick={handleUnSave}>
-                <i className={`fa fa-solid fa-check ${styles.Save}`}></i>
+                <i className={`fa fa-solid fa-check ${styles.SaveCheck}`}></i>
               </span>
             ) : currentUser ? (
               <span onClick={handleSave}>
-                <i className={`fas fa-regular fa-bookmark ${styles.Save}`}></i>
+                <i
+                  className={`fas fa-regular fa-bookmark ${styles.SaveBookmark}`}
+                ></i>
               </span>
             ) : (
               <OverlayTrigger

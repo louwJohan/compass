@@ -10,6 +10,7 @@ import Sell from "./pages/listings/Sell";
 import ListingListDisplay from "./pages/listings/ListingListDisplay";
 import ListingPage from "./pages/listings/ListingPage";
 import { useCurrentUser } from "./context/CurrentUserContext";
+import ListingEditForm from "./pages/listings/ListingEditForm";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -56,6 +57,11 @@ function App() {
           <Route exact path="/signup" render={() => <SignUpForm />} />
           <Route exact path="/profile" render={() => <h1>Profile</h1>} />
           <Route exact path="/listing/:id" render={() => <ListingPage />} />
+          <Route
+            exact
+            path="/listings/:id/edit"
+            render={() => <ListingEditForm />}
+          />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>

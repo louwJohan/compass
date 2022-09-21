@@ -1,6 +1,7 @@
-.Card {
-    display: flex;
-    
+.Card img {
+   width:18rem;
+   height: 15rem;
+   object-fit: cover;
 }
 
 a {

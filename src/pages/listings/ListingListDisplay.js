@@ -52,32 +52,24 @@ const ListingListDisplay = ({ message, filter = "" }) => {
               placeholder="Search listings"
             />
           </Form>
-          <Row>
-            {hasLoaded ? (
-              <>
-                {listings.results.length ? (
-                  listings.results.map((listing) => (
-                    <Col
-                      className="d-flex justify-content-center"
-                      lg={4}
-                      md={6}
-                      sm={12}
-                    >
-                      <ListingCard key={listing.id} {...listing} />
-                    </Col>
-                  ))
-                ) : (
-                  <Container className={appStyles.Content}>
-                    <Asset src={NoResults} message={message} />
-                  </Container>
-                )}
-              </>
-            ) : (
-              <Container className={appStyles.Content}>
-                <Asset spinner />
-              </Container>
-            )}
-          </Row>
+
+          {hasLoaded ? (
+            <>
+              {listings.results.length ? (
+                listings.results.map((listing) => (
+                  <ListingCard key={listing.id} {...listing} />
+                ))
+              ) : (
+                <Container className={appStyles.Content}>
+                  <Asset src={NoResults} message={message} />
+                </Container>
+              )}
+            </>
+          ) : (
+            <Container className={appStyles.Content}>
+              <Asset spinner />
+            </Container>
+          )}
         </Col>
       </Row>
     </div>

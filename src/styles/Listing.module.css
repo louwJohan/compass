@@ -1,3 +1,15 @@
-.Save {
+.SaveCheck {
     font-size:250%;
+}
+.SaveBookmark {
+    font-size:250%;
+}
+
+
+.SaveBookmark:hover {
+    color:green;
+}
+
+.SaveCheck:hover {
+    color:red;
 }
