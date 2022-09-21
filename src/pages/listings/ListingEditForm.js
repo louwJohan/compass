@@ -46,7 +46,6 @@ const ListingEditForm = () => {
   const [errors, setErrors] = useState({});
   const { id } = useParams();
   const history = useHistory();
-
   useEffect(() => {
     const handleMount = async () => {
       try {
@@ -106,7 +105,7 @@ const ListingEditForm = () => {
   const handleChangeImage = (event) => {
     setListingData({
       ...listingData,
-      [event.target.name]: event.target.files[0],
+      [event.target.name]: URL.createObjectURL(event.target.files[0]),
     });
   };
 
@@ -121,6 +120,7 @@ const ListingEditForm = () => {
     formData.append("area", area);
     formData.append("price", price);
     formData.append("commerce_type", commerce_type);
+
     formData.append("image_one", image_one);
     formData.append("image_two", image_two);
     formData.append("image_three", image_three);

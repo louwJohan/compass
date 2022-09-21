@@ -98,7 +98,7 @@ const Listing = (props) => {
   return (
     <div>
       <Row>
-        <Col>
+        <Col lg={6} md={6} sm={12} xs={12}>
           <Carousel variant="dark">
             <Carousel.Item>
               <img
@@ -158,7 +158,7 @@ const Listing = (props) => {
             </Carousel.Item>
           </Carousel>
         </Col>
-        <Col>
+        <Col lg={6} md={6} sm={12} xs={12} className="p-4">
           <p>{title}</p>
           {is_owner && listingPage && (
             <EditDropdown handleEdit={handleEdit} handleDelete={handleDelete} />
@@ -217,7 +217,7 @@ const Listing = (props) => {
           </div>
         </Col>
       </Row>
-      <Container>
+      <Container className="mt-3">
         <Button onClick={() => history.goBack()}>Back</Button>
       </Container>
     </div>

@@ -7,7 +7,7 @@ import Container from "react-bootstrap/Container";
 import Asset from "../../components/Asset";
 import NoResults from "../../assets/no-results.png";
 import appStyles from "../../App.module.css";
-import { Form } from "react-bootstrap";
+import Form from "react-bootstrap/Form";
 import ListingCard from "./ListingCard";
 
 const ListingListDisplay = ({ message, filter = "" }) => {
@@ -39,9 +39,8 @@ const ListingListDisplay = ({ message, filter = "" }) => {
   }, [filter, query, pathname]);
   return (
     <div>
-      <Row className="h-100">
-        <Col className="py-2 p-0 p-lg-2">
-          <p>Popular profiles mobile</p>
+      <Row className="text-center">
+        <Col>
           <i className={`fas fa-search`} />
           <Form onSubmit={(event) => event.preventDefault()} className="mb-5">
             <Form.Control

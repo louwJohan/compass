@@ -69,17 +69,15 @@ const ListingCreateForm = () => {
     formData.append("area", area);
     formData.append("price", price);
     formData.append("commerce_type", commerce_type);
+    formData.append("image_one", image_one);
+    formData.append("image_two", image_two);
+    formData.append("image_three", image_three);
+    formData.append("image_four", image_four);
+    formData.append("image_five", image_five);
+    formData.append("image_six", image_six);
+    formData.append("image_seven", image_seven);
+    formData.append("image_eight", image_eight);
 
-    if ([event.target.name]?.current?.files[0]) {
-      formData.append("image_one", image_one.current.files[0]);
-      formData.append("image_two", image_two.current.files[0]);
-      formData.append("image_three", image_three.current.files[0]);
-      formData.append("image_four", image_four.current.files[0]);
-      formData.append("image_five", image_five.current.files[0]);
-      formData.append("image_six", image_six.current.files[0]);
-      formData.append("image_seven", image_seven.current.files[0]);
-      formData.append("image_eight", image_eight.current.files[0]);
-    }
     try {
       const { data } = await axiosReq.post("/listings/", formData);
       history.push(`/listing/${data.id}`);
