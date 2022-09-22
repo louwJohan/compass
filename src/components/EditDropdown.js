@@ -15,7 +15,7 @@ const Bars = React.forwardRef(({ onClick }, ref) => (
 
 export const EditDropdown = ({ handleEdit, handleDelete }) => {
   return (
-    <Dropdown className="ml-auto" drop="left">
+    <Dropdown drop="left">
       <Dropdown.Toggle as={Bars} />
 
       <Dropdown.Menu

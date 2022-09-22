@@ -3,3 +3,9 @@
     min-height: 100vh;
     background-color:#DCB39D ;
 }
+
+figure {
+    text-align: center;
+    display: inline-block;
+  }
+

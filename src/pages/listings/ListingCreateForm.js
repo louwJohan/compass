@@ -4,7 +4,9 @@ import Form from "react-bootstrap/Form";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useHistory } from "react-router";
 import Alert from "react-bootstrap/Alert";
-
+import { Image } from "react-bootstrap";
+import Upload from "../../assets/upload.png";
+import styles from "../../styles/ListingCreateForm.module.css";
 const ListingCreateForm = () => {
   const [listingData, setListingData] = useState({
     title: "",
@@ -44,6 +46,7 @@ const ListingCreateForm = () => {
   const [errors, setErrors] = useState({});
 
   const history = useHistory();
+
   const handleChange = (event) => {
     setListingData({
       ...listingData,
@@ -51,7 +54,7 @@ const ListingCreateForm = () => {
     });
   };
 
-  const handleChangeImage = (event) => {
+  const handleChangeImage = async (event) => {
     setListingData({
       ...listingData,
       [event.target.name]: event.target.files[0],
@@ -192,7 +195,7 @@ const ListingCreateForm = () => {
               {message}
             </Alert>
           ))}
-          <Form.Group controlId="commerce_type">
+          <Form.Group className="mb-3" controlId="commerce_type">
             <Form.Label>Selling or Renting</Form.Label>
             <Form.Control
               as="select"
@@ -210,7 +213,17 @@ const ListingCreateForm = () => {
               {message}
             </Alert>
           ))}
+
           <Form.Group className="text-center">
+            <figure>
+              <Image
+                className={styles.Upload}
+                src={
+                  image_one.length < 1 ? Upload : URL.createObjectURL(image_one)
+                }
+                rounded
+              />
+            </figure>
             <Form.Label
               className="d-flex justify-content-center"
               htmlFor="image-upload"
@@ -229,6 +242,15 @@ const ListingCreateForm = () => {
             </Alert>
           ))}
           <Form.Group className="text-center">
+            <figure>
+              <Image
+                className={styles.Upload}
+                src={
+                  image_two.length < 1 ? Upload : URL.createObjectURL(image_two)
+                }
+                rounded
+              />
+            </figure>
             <Form.Label
               className="d-flex justify-content-center"
               htmlFor="image-upload"
@@ -247,6 +269,17 @@ const ListingCreateForm = () => {
             </Alert>
           ))}
           <Form.Group className="text-center">
+            <figure>
+              <Image
+                className={styles.Upload}
+                src={
+                  image_three.length < 1
+                    ? Upload
+                    : URL.createObjectURL(image_three)
+                }
+                rounded
+              />
+            </figure>
             <Form.Label
               className="d-flex justify-content-center"
               htmlFor="image-upload"
@@ -265,6 +298,17 @@ const ListingCreateForm = () => {
             </Alert>
           ))}
           <Form.Group className="text-center">
+            <figure>
+              <Image
+                className={styles.Upload}
+                src={
+                  image_four.length < 1
+                    ? Upload
+                    : URL.createObjectURL(image_four)
+                }
+                rounded
+              />
+            </figure>
             <Form.Label
               className="d-flex justify-content-center"
               htmlFor="image-upload"
@@ -283,6 +327,17 @@ const ListingCreateForm = () => {
             </Alert>
           ))}
           <Form.Group className="text-center">
+            <figure>
+              <Image
+                className={styles.Upload}
+                src={
+                  image_five.length < 1
+                    ? Upload
+                    : URL.createObjectURL(image_five)
+                }
+                rounded
+              />
+            </figure>
             <Form.Label
               className="d-flex justify-content-center"
               htmlFor="image-upload"
@@ -301,6 +356,15 @@ const ListingCreateForm = () => {
             </Alert>
           ))}
           <Form.Group className="text-center">
+            <figure>
+              <Image
+                className={styles.Upload}
+                src={
+                  image_six.length < 1 ? Upload : URL.createObjectURL(image_six)
+                }
+                rounded
+              />
+            </figure>
             <Form.Label
               className="d-flex justify-content-center"
               htmlFor="image-upload"
@@ -319,6 +383,17 @@ const ListingCreateForm = () => {
             </Alert>
           ))}
           <Form.Group className="text-center">
+            <figure>
+              <Image
+                className={styles.Upload}
+                src={
+                  image_seven.length < 1
+                    ? Upload
+                    : URL.createObjectURL(image_seven)
+                }
+                rounded
+              />
+            </figure>
             <Form.Label
               className="d-flex justify-content-center"
               htmlFor="image-upload"
@@ -337,6 +412,17 @@ const ListingCreateForm = () => {
             </Alert>
           ))}
           <Form.Group className="text-center">
+            <figure>
+              <Image
+                className={styles.Upload}
+                src={
+                  image_eight.length < 1
+                    ? Upload
+                    : URL.createObjectURL(image_eight)
+                }
+                rounded
+              />
+            </figure>
             <Form.Label
               className="d-flex justify-content-center"
               htmlFor="image-upload"

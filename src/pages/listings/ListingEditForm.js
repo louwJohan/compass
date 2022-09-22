@@ -6,6 +6,8 @@ import { useHistory } from "react-router";
 import Alert from "react-bootstrap/Alert";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import Image from "react-bootstrap/Image";
+import styles from "../../styles/ListingEditForm.module.css";
+import Upload from "../../assets/upload.png";
 
 const ListingEditForm = () => {
   const [listingData, setListingData] = useState({
@@ -50,6 +52,7 @@ const ListingEditForm = () => {
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get(`/listings/${id}`);
+        console.log(data);
         const {
           title,
           description,
@@ -102,10 +105,10 @@ const ListingEditForm = () => {
     });
   };
 
-  const handleChangeImage = (event) => {
+  const handleChangeImage = async (event) => {
     setListingData({
       ...listingData,
-      [event.target.name]: URL.createObjectURL(event.target.files[0]),
+      [event.target.name]: event.target.files[0],
     });
   };
 
@@ -120,7 +123,6 @@ const ListingEditForm = () => {
     formData.append("area", area);
     formData.append("price", price);
     formData.append("commerce_type", commerce_type);
-
     formData.append("image_one", image_one);
     formData.append("image_two", image_two);
     formData.append("image_three", image_three);
@@ -131,8 +133,8 @@ const ListingEditForm = () => {
     formData.append("image_eight", image_eight);
 
     try {
-      await axiosReq.put(`/listings/${id}`, formData);
-      history.push(`/listing/${id}`);
+      const { data } = await axiosReq.post("/listings/", formData);
+      history.push(`/listing/${data.id}`);
     } catch (err) {
       // console.log(err);
       if (err.response?.status !== 401) {
@@ -244,7 +246,7 @@ const ListingEditForm = () => {
               {message}
             </Alert>
           ))}
-          <Form.Group controlId="commerce_type">
+          <Form.Group className="mb-3" controlId="commerce_type">
             <Form.Label>Selling or Renting</Form.Label>
             <Form.Control
               as="select"
@@ -262,14 +264,19 @@ const ListingEditForm = () => {
               {message}
             </Alert>
           ))}
+
           <Form.Group className="text-center">
             <figure>
-              <Image src={image_one} rounded />
+              <Image
+                className={styles.Upload}
+                src={image_one.length < 1 ? Upload : image_one}
+                rounded
+              />
             </figure>
-            <div>
-              <Form.Label htmlFor="image-upload">Change the image</Form.Label>
-            </div>
-
+            <Form.Label
+              className="d-flex justify-content-center"
+              htmlFor="image-upload"
+            ></Form.Label>
             <Form.File
               id="image-upload"
               accept="image/*"
@@ -284,12 +291,16 @@ const ListingEditForm = () => {
           ))}
           <Form.Group className="text-center">
             <figure>
-              <Image src={image_two} rounded />
+              <Image
+                className={styles.Upload}
+                src={image_two.length < 1 ? Upload : image_two}
+                rounded
+              />
             </figure>
-            <div>
-              <Form.Label htmlFor="image-upload">Change the image</Form.Label>
-            </div>
-
+            <Form.Label
+              className="d-flex justify-content-center"
+              htmlFor="image-upload"
+            ></Form.Label>
             <Form.File
               id="image-upload"
               accept="image/*"
@@ -304,12 +315,16 @@ const ListingEditForm = () => {
           ))}
           <Form.Group className="text-center">
             <figure>
-              <Image src={image_three} rounded />
+              <Image
+                className={styles.Upload}
+                src={image_three.length < 1 ? Upload : image_three}
+                rounded
+              />
             </figure>
-            <div>
-              <Form.Label htmlFor="image-upload">Change the image</Form.Label>
-            </div>
-
+            <Form.Label
+              className="d-flex justify-content-center"
+              htmlFor="image-upload"
+            ></Form.Label>
             <Form.File
               id="image-upload"
               accept="image/*"
@@ -324,12 +339,16 @@ const ListingEditForm = () => {
           ))}
           <Form.Group className="text-center">
             <figure>
-              <Image src={image_four} rounded />
+              <Image
+                className={styles.Upload}
+                src={image_four.length < 1 ? Upload : image_four}
+                rounded
+              />
             </figure>
-            <div>
-              <Form.Label htmlFor="image-upload">Change the image</Form.Label>
-            </div>
-
+            <Form.Label
+              className="d-flex justify-content-center"
+              htmlFor="image-upload"
+            ></Form.Label>
             <Form.File
               id="image-upload"
               accept="image/*"
@@ -344,12 +363,16 @@ const ListingEditForm = () => {
           ))}
           <Form.Group className="text-center">
             <figure>
-              <Image src={image_five} rounded />
+              <Image
+                className={styles.Upload}
+                src={image_five.length < 1 ? Upload : image_five}
+                rounded
+              />
             </figure>
-            <div>
-              <Form.Label htmlFor="image-upload">Change the image</Form.Label>
-            </div>
-
+            <Form.Label
+              className="d-flex justify-content-center"
+              htmlFor="image-upload"
+            ></Form.Label>
             <Form.File
               id="image-upload"
               accept="image/*"
@@ -364,12 +387,16 @@ const ListingEditForm = () => {
           ))}
           <Form.Group className="text-center">
             <figure>
-              <Image src={image_six} rounded />
+              <Image
+                className={styles.Upload}
+                src={image_six.length < 1 ? Upload : image_six}
+                rounded
+              />
             </figure>
-            <div>
-              <Form.Label htmlFor="image-upload">Change the image</Form.Label>
-            </div>
-
+            <Form.Label
+              className="d-flex justify-content-center"
+              htmlFor="image-upload"
+            ></Form.Label>
             <Form.File
               id="image-upload"
               accept="image/*"
@@ -384,12 +411,16 @@ const ListingEditForm = () => {
           ))}
           <Form.Group className="text-center">
             <figure>
-              <Image src={image_seven} rounded />
+              <Image
+                className={styles.Upload}
+                src={image_seven.length < 1 ? Upload : image_seven}
+                rounded
+              />
             </figure>
-            <div>
-              <Form.Label htmlFor="image-upload">Change the image</Form.Label>
-            </div>
-
+            <Form.Label
+              className="d-flex justify-content-center"
+              htmlFor="image-upload"
+            ></Form.Label>
             <Form.File
               id="image-upload"
               accept="image/*"
@@ -404,12 +435,16 @@ const ListingEditForm = () => {
           ))}
           <Form.Group className="text-center">
             <figure>
-              <Image src={image_eight} rounded />
+              <Image
+                className={styles.Upload}
+                src={image_eight.length < 1 ? Upload : image_eight}
+                rounded
+              />
             </figure>
-            <div>
-              <Form.Label htmlFor="image-upload">Change the image</Form.Label>
-            </div>
-
+            <Form.Label
+              className="d-flex justify-content-center"
+              htmlFor="image-upload"
+            ></Form.Label>
             <Form.File
               id="image-upload"
               accept="image/*"

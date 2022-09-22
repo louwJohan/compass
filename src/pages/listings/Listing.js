@@ -96,7 +96,7 @@ const Listing = (props) => {
   };
 
   return (
-    <div>
+    <>
       <Row>
         <Col lg={6} md={6} sm={12} xs={12}>
           <Carousel variant="dark">
@@ -159,10 +159,15 @@ const Listing = (props) => {
           </Carousel>
         </Col>
         <Col lg={6} md={6} sm={12} xs={12} className="p-4">
-          <p>{title}</p>
-          {is_owner && listingPage && (
-            <EditDropdown handleEdit={handleEdit} handleDelete={handleDelete} />
-          )}
+          <div>
+            <span>{title}</span>
+            {is_owner && listingPage && (
+              <EditDropdown
+                handleEdit={handleEdit}
+                handleDelete={handleDelete}
+              />
+            )}
+          </div>
           <hr></hr>
           <p>{description}</p>
           <hr></hr>
@@ -220,7 +225,7 @@ const Listing = (props) => {
       <Container className="mt-3">
         <Button onClick={() => history.goBack()}>Back</Button>
       </Container>
-    </div>
+    </>
   );
 };
 

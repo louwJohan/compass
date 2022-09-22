@@ -6,8 +6,11 @@ import styles from "../../styles/ListingCard.module.css";
 
 const ListingCard = ({ title, price, area, bedrooms, image_one, id }) => {
   return (
-    <div>
-      <Card style={{ width: "18rem" }} className={`mb-5 ${styles.Card}`}>
+    <div className="mx-auto p-3">
+      <Card
+        style={{ width: "18rem" }}
+        className={`mb-5 ${styles.Card} mx-auto`}
+      >
         <Card.Img variant="top" src={image_one} />
         <Card.Body>
           <Card.Title>{title}</Card.Title>

@@ -9,6 +9,7 @@ import NoResults from "../../assets/no-results.png";
 import appStyles from "../../App.module.css";
 import Form from "react-bootstrap/Form";
 import ListingCard from "./ListingCard";
+import { CardGroup } from "react-bootstrap";
 
 const ListingListDisplay = ({ message, filter = "" }) => {
   const [listings, setListings] = useState({ results: [] });
@@ -38,20 +39,19 @@ const ListingListDisplay = ({ message, filter = "" }) => {
     };
   }, [filter, query, pathname]);
   return (
-    <div>
-      <Row className="text-center">
-        <Col>
-          <i className={`fas fa-search`} />
-          <Form onSubmit={(event) => event.preventDefault()} className="mb-5">
-            <Form.Control
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
-              type="text"
-              className="mr-sm-2"
-              placeholder="Search listings"
-            />
-          </Form>
-
+    <Row className="text-center">
+      <Col>
+        <i className={`fas fa-search`} />
+        <Form onSubmit={(event) => event.preventDefault()} className="mb-5">
+          <Form.Control
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            type="text"
+            className="mr-sm-2"
+            placeholder="Search listings"
+          />
+        </Form>
+        <CardGroup>
           {hasLoaded ? (
             <>
               {listings.results.length ? (
@@ -69,9 +69,9 @@ const ListingListDisplay = ({ message, filter = "" }) => {
               <Asset spinner />
             </Container>
           )}
-        </Col>
-      </Row>
-    </div>
+        </CardGroup>
+      </Col>
+    </Row>
   );
 };
 
