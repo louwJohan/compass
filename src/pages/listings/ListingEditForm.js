@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Container, Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import { axiosReq } from "../../api/axiosDefaults";
@@ -45,14 +45,23 @@ const ListingEditForm = () => {
     image_seven,
     image_eight,
   } = listingData;
+
   const [errors, setErrors] = useState({});
   const { id } = useParams();
   const history = useHistory();
+  const imageOneInput = useRef(null);
+  const imageTwoInput = useRef(null);
+  const imageThreeInput = useRef(null);
+  const imageFourInput = useRef(null);
+  const imageFiveInput = useRef(null);
+  const imageSixInput = useRef(null);
+  const imageSevenInput = useRef(null);
+  const imageEightInput = useRef(null);
+
   useEffect(() => {
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get(`/listings/${id}`);
-        console.log(data);
         const {
           title,
           description,
@@ -105,12 +114,24 @@ const ListingEditForm = () => {
     });
   };
 
-  const handleChangeImage = async (event) => {
-    setListingData({
-      ...listingData,
-      [event.target.name]: event.target.files[0],
-    });
+  const handleChangeImage = (event) => {
+    if (event.target.files.length) {
+      console.log(event.target.files);
+      console.log(image_one);
+      setListingData({
+        ...listingData,
+        [event.target.name]: URL.createObjectURL(event.target.files[0]),
+      });
+    }
   };
+  // const handleChangeImage = async (event) => {
+  //   setListingData({
+  //     ...listingData,
+  //     [event.target.name]: event.target.files[0],
+  //   });
+
+  //   console.log(event.target.files[0]);
+  // };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -123,17 +144,35 @@ const ListingEditForm = () => {
     formData.append("area", area);
     formData.append("price", price);
     formData.append("commerce_type", commerce_type);
-    formData.append("image_one", image_one);
-    formData.append("image_two", image_two);
-    formData.append("image_three", image_three);
-    formData.append("image_four", image_four);
-    formData.append("image_five", image_five);
-    formData.append("image_six", image_six);
-    formData.append("image_seven", image_seven);
-    formData.append("image_eight", image_eight);
+
+    if (imageOneInput?.current?.files[0]) {
+      formData.append("image_one", imageOneInput.current.files[0]);
+    }
+
+    if (imageTwoInput?.current?.files[0]) {
+      formData.append("image_two", imageTwoInput.current.files[0]);
+    }
+    if (imageThreeInput?.current?.files[0]) {
+      formData.append("image_three", imageThreeInput.current.files[0]);
+    }
+    if (imageFourInput?.current?.files[0]) {
+      formData.append("image_four", imageFourInput.current.files[0]);
+    }
+    if (imageFiveInput?.current?.files[0]) {
+      formData.append("image_five", imageFiveInput.current.files[0]);
+    }
+    if (imageSixInput?.current?.files[0]) {
+      formData.append("image_six", imageSixInput.current.files[0]);
+    }
+    if (imageSevenInput?.current?.files[0]) {
+      formData.append("image_seven", imageSevenInput.current.files[0]);
+    }
+    if (imageEightInput?.current?.files[0]) {
+      formData.append("image_eight", imageEightInput.current.files[0]);
+    }
 
     try {
-      const { data } = await axiosReq.post("/listings/", formData);
+      const { data } = await axiosReq.put(`/listings/${id}`, formData);
       history.push(`/listing/${data.id}`);
     } catch (err) {
       // console.log(err);
@@ -267,21 +306,18 @@ const ListingEditForm = () => {
 
           <Form.Group className="text-center">
             <figure>
-              <Image
-                className={styles.Upload}
-                src={image_one.length < 1 ? Upload : image_one}
-                rounded
-              />
+              <Image className={styles.Upload} src={image_one} rounded />
             </figure>
             <Form.Label
               className="d-flex justify-content-center"
-              htmlFor="image-upload"
+              htmlFor="image_one"
             ></Form.Label>
             <Form.File
-              id="image-upload"
+              id="image_one"
               accept="image/*"
               onChange={handleChangeImage}
               name="image_one"
+              ref={imageOneInput}
             />
           </Form.Group>
           {errors?.image_one?.map((message, idx) => (
@@ -291,21 +327,18 @@ const ListingEditForm = () => {
           ))}
           <Form.Group className="text-center">
             <figure>
-              <Image
-                className={styles.Upload}
-                src={image_two.length < 1 ? Upload : image_two}
-                rounded
-              />
+              <Image className={styles.Upload} src={image_two} rounded />
             </figure>
             <Form.Label
               className="d-flex justify-content-center"
-              htmlFor="image-upload"
+              htmlFor="image_two"
             ></Form.Label>
             <Form.File
-              id="image-upload"
+              id="image_two"
               accept="image/*"
               onChange={handleChangeImage}
               name="image_two"
+              ref={imageTwoInput}
             />
           </Form.Group>
           {errors?.image_two?.map((message, idx) => (
@@ -315,21 +348,18 @@ const ListingEditForm = () => {
           ))}
           <Form.Group className="text-center">
             <figure>
-              <Image
-                className={styles.Upload}
-                src={image_three.length < 1 ? Upload : image_three}
-                rounded
-              />
+              <Image className={styles.Upload} src={image_three} rounded />
             </figure>
             <Form.Label
               className="d-flex justify-content-center"
-              htmlFor="image-upload"
+              htmlFor="image_three"
             ></Form.Label>
             <Form.File
-              id="image-upload"
+              id="image_three"
               accept="image/*"
               onChange={handleChangeImage}
               name="image_three"
+              ref={imageThreeInput}
             />
           </Form.Group>
           {errors?.image_three?.map((message, idx) => (
@@ -339,21 +369,18 @@ const ListingEditForm = () => {
           ))}
           <Form.Group className="text-center">
             <figure>
-              <Image
-                className={styles.Upload}
-                src={image_four.length < 1 ? Upload : image_four}
-                rounded
-              />
+              <Image className={styles.Upload} src={image_four} rounded />
             </figure>
             <Form.Label
               className="d-flex justify-content-center"
-              htmlFor="image-upload"
+              htmlFor="image_four"
             ></Form.Label>
             <Form.File
-              id="image-upload"
+              id="image_four"
               accept="image/*"
               onChange={handleChangeImage}
               name="image_four"
+              ref={imageFourInput}
             />
           </Form.Group>
           {errors?.image_four?.map((message, idx) => (
@@ -363,21 +390,18 @@ const ListingEditForm = () => {
           ))}
           <Form.Group className="text-center">
             <figure>
-              <Image
-                className={styles.Upload}
-                src={image_five.length < 1 ? Upload : image_five}
-                rounded
-              />
+              <Image className={styles.Upload} src={image_five} rounded />
             </figure>
             <Form.Label
               className="d-flex justify-content-center"
-              htmlFor="image-upload"
+              htmlFor="image_five"
             ></Form.Label>
             <Form.File
-              id="image-upload"
+              id="image_five"
               accept="image/*"
               onChange={handleChangeImage}
               name="image_five"
+              ref={imageFiveInput}
             />
           </Form.Group>
           {errors?.image_five?.map((message, idx) => (
@@ -387,21 +411,18 @@ const ListingEditForm = () => {
           ))}
           <Form.Group className="text-center">
             <figure>
-              <Image
-                className={styles.Upload}
-                src={image_six.length < 1 ? Upload : image_six}
-                rounded
-              />
+              <Image className={styles.Upload} src={image_six} rounded />
             </figure>
             <Form.Label
               className="d-flex justify-content-center"
-              htmlFor="image-upload"
+              htmlFor="image_six"
             ></Form.Label>
             <Form.File
-              id="image-upload"
+              id="image_six"
               accept="image/*"
               onChange={handleChangeImage}
               name="image_six"
+              ref={imageSixInput}
             />
           </Form.Group>
           {errors?.image_six?.map((message, idx) => (
@@ -411,21 +432,18 @@ const ListingEditForm = () => {
           ))}
           <Form.Group className="text-center">
             <figure>
-              <Image
-                className={styles.Upload}
-                src={image_seven.length < 1 ? Upload : image_seven}
-                rounded
-              />
+              <Image className={styles.Upload} src={image_seven} rounded />
             </figure>
             <Form.Label
               className="d-flex justify-content-center"
-              htmlFor="image-upload"
+              htmlFor="image_seven"
             ></Form.Label>
             <Form.File
-              id="image-upload"
+              id="image_seven"
               accept="image/*"
               onChange={handleChangeImage}
               name="image_seven"
+              ref={imageSevenInput}
             />
           </Form.Group>
           {errors?.image_seven?.map((message, idx) => (
@@ -435,21 +453,18 @@ const ListingEditForm = () => {
           ))}
           <Form.Group className="text-center">
             <figure>
-              <Image
-                className={styles.Upload}
-                src={image_eight.length < 1 ? Upload : image_eight}
-                rounded
-              />
+              <Image className={styles.Upload} src={image_eight} rounded />
             </figure>
             <Form.Label
               className="d-flex justify-content-center"
-              htmlFor="image-upload"
+              htmlFor="image_eight"
             ></Form.Label>
             <Form.File
-              id="image-upload"
+              id="image_eight"
               accept="image/*"
               onChange={handleChangeImage}
               name="image_eight"
+              ref={imageEightInput}
             />
           </Form.Group>
           {errors?.image_eight?.map((message, idx) => (
