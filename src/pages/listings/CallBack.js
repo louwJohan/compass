@@ -43,7 +43,7 @@ const CallBack = () => {
     console.log(listing);
     try {
       await axiosReq.post("/messages/", formData);
-      history.push(`/listing/${id}`);
+      history.push("/buy");
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
@@ -62,7 +62,7 @@ const CallBack = () => {
         </Card.Header>
         <Accordion.Collapse eventKey="0">
           <Card.Body>
-            <Form>
+            <Form onClick={handleSubmit}>
               <Form.Group controlId="name">
                 <Form.Label>Name</Form.Label>
                 <Form.Control
@@ -154,7 +154,7 @@ const CallBack = () => {
                   {message}
                 </Alert>
               ))}
-              <Button className="mt-3" onClick={handleSubmit}>
+              <Button type="submit" className="mt-3">
                 Submit
               </Button>
             </Form>
