@@ -13,6 +13,7 @@ import styles from "../../styles/Listing.module.css";
 import { axiosRes } from "../../api/axiosDefaults";
 import { useHistory } from "react-router-dom";
 import { EditDropdown } from "../../components/EditDropdown";
+import CallBack from "./CallBack";
 
 const Listing = (props) => {
   const {
@@ -220,6 +221,7 @@ const Listing = (props) => {
             )}
             <p>Saved: {saved_count}</p>
           </div>
+          <CallBack />
         </Col>
       </Row>
       <Container className="mt-3">

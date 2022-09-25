@@ -7,7 +7,6 @@ import Alert from "react-bootstrap/Alert";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import Image from "react-bootstrap/Image";
 import styles from "../../styles/ListingEditForm.module.css";
-import Upload from "../../assets/upload.png";
 
 const ListingEditForm = () => {
   const [listingData, setListingData] = useState({
@@ -124,14 +123,6 @@ const ListingEditForm = () => {
       });
     }
   };
-  // const handleChangeImage = async (event) => {
-  //   setListingData({
-  //     ...listingData,
-  //     [event.target.name]: event.target.files[0],
-  //   });
-
-  //   console.log(event.target.files[0]);
-  // };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
