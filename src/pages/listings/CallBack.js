@@ -7,7 +7,9 @@ import {
   useParams,
 } from "react-router-dom/cjs/react-router-dom.min";
 
-const CallBack = () => {
+const CallBack = (props) => {
+  const is_owner = props;
+  console.log(is_owner);
   const [data, setData] = useState({
     name: "",
     surname: "",
@@ -16,10 +18,9 @@ const CallBack = () => {
     title: "",
     description: "",
   });
-
+  const currentUser = useCurrentUser();
   const { id } = useParams();
-  console.log(id);
-  const { name, surname, email, phone_number, title, content, listing } = data;
+  const { name, surname, email, phone_number, title, content } = data;
   const history = useHistory();
   const [errors, setErrors] = useState({});
 
@@ -39,8 +40,6 @@ const CallBack = () => {
     formData.append("title", title);
     formData.append("content", content);
     formData.append("listing", id);
-    console.log(formData);
-    console.log(listing);
     try {
       await axiosReq.post("/messages/", formData);
       history.push("/buy");
@@ -51,7 +50,7 @@ const CallBack = () => {
       }
     }
   };
-  const currentUser = useCurrentUser();
+
   const LoggedIn = (
     <Accordion>
       <Card>
@@ -71,6 +70,7 @@ const CallBack = () => {
                   value={name}
                   name="name"
                   onChange={handleChange}
+                  required
                 />
                 {errors?.name?.map((message, idx) => (
                   <Alert key={idx} variant="dark">
@@ -86,6 +86,7 @@ const CallBack = () => {
                   value={surname}
                   name="surname"
                   onChange={handleChange}
+                  required
                 />
                 {errors?.surname?.map((message, idx) => (
                   <Alert key={idx} variant="dark">
@@ -101,6 +102,7 @@ const CallBack = () => {
                   value={email}
                   name="email"
                   onChange={handleChange}
+                  required
                 />
                 {errors?.email?.map((message, idx) => (
                   <Alert key={idx} variant="dark">
@@ -131,6 +133,7 @@ const CallBack = () => {
                   name="title"
                   value={title}
                   onChange={handleChange}
+                  required
                 />
                 {errors?.title?.map((message, idx) => (
                   <Alert key={idx} variant="dark">
@@ -147,6 +150,7 @@ const CallBack = () => {
                   name="content"
                   value={content}
                   onChange={handleChange}
+                  required
                 />
               </Form.Group>
               {errors?.description?.map((message, idx) => (

@@ -77,7 +77,6 @@ const Listing = (props) => {
 
   const handleUnSave = async () => {
     try {
-      console.log(saved_id);
       await axiosRes.delete(`/saved/${saved_id}`);
       setListings((prevListing) => ({
         ...prevListing,
@@ -162,12 +161,6 @@ const Listing = (props) => {
         <Col lg={6} md={6} sm={12} xs={12} className="p-4">
           <div>
             <span>{title}</span>
-            {is_owner && listingPage && (
-              <EditDropdown
-                handleEdit={handleEdit}
-                handleDelete={handleDelete}
-              />
-            )}
           </div>
           <hr></hr>
           <p>{description}</p>
@@ -221,7 +214,17 @@ const Listing = (props) => {
             )}
             <p>Saved: {saved_count}</p>
           </div>
-          <CallBack />
+          {is_owner && listingPage ? (
+            <>
+              <span>Edit</span>
+              <EditDropdown
+                handleEdit={handleEdit}
+                handleDelete={handleDelete}
+              />
+            </>
+          ) : (
+            <CallBack />
+          )}
         </Col>
       </Row>
       <Container className="mt-3">

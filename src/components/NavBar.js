@@ -10,6 +10,7 @@ import {
 } from "../context/CurrentUserContext";
 import axios from "axios";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
+import Avatar from "../components/Avatar.js";
 
 const NavBar = () => {
   const currentUser = useCurrentUser();

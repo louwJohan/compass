@@ -16,7 +16,6 @@ const ListingPage = () => {
           axiosReq.get(`/listings/${id}`),
         ]);
         setListing({ results: [listing] });
-        console.log(listing);
       } catch (err) {
         console.log(err);
       }

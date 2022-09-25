@@ -15,7 +15,7 @@ const Bars = React.forwardRef(({ onClick }, ref) => (
 
 export const EditDropdown = ({ handleEdit, handleDelete }) => {
   return (
-    <Dropdown drop="left">
+    <Dropdown drop="right">
       <Dropdown.Toggle as={Bars} />
 
       <Dropdown.Menu
