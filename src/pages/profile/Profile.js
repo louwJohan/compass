@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useCurrentUser } from "../../context/CurrentUserContext";
 import { axiosReq } from "../../api/axiosDefaults";
 import Asset from "../../components/Asset";
+import { NavLink } from "react-router-dom";
 
 const Profile = () => {
   const currentUser = useCurrentUser();
@@ -49,7 +50,7 @@ const Profile = () => {
                 <ListGroupItem>Vestibulum at eros</ListGroupItem>
               </ListGroup>
               <Card.Body>
-                <Card.Link href="#">Card Link</Card.Link>
+                <NavLink to={`/mylistings`}>My Listings</NavLink>
               </Card.Body>
             </Card>
           </Col>

@@ -215,13 +215,7 @@ const Listing = (props) => {
             <p>Saved: {saved_count}</p>
           </div>
           {is_owner && listingPage ? (
-            <>
-              <span>Edit</span>
-              <EditDropdown
-                handleEdit={handleEdit}
-                handleDelete={handleDelete}
-              />
-            </>
+            <EditDropdown handleEdit={handleEdit} handleDelete={handleDelete} />
           ) : (
             <CallBack />
           )}

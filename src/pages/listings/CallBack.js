@@ -61,7 +61,7 @@ const CallBack = (props) => {
         </Card.Header>
         <Accordion.Collapse eventKey="0">
           <Card.Body>
-            <Form onClick={handleSubmit}>
+            <Form>
               <Form.Group controlId="name">
                 <Form.Label>Name</Form.Label>
                 <Form.Control
@@ -153,15 +153,15 @@ const CallBack = (props) => {
                   required
                 />
               </Form.Group>
-              {errors?.description?.map((message, idx) => (
+              {errors?.content?.map((message, idx) => (
                 <Alert key={idx} variant="dark">
                   {message}
                 </Alert>
               ))}
-              <Button type="submit" className="mt-3">
-                Submit
-              </Button>
             </Form>
+            <Button type="submit" className="mt-3" onClick={handleSubmit}>
+              Submit
+            </Button>
           </Card.Body>
         </Accordion.Collapse>
       </Card>

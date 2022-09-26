@@ -63,6 +63,16 @@ function App() {
             path="/listings/:id/edit"
             render={() => <ListingEditForm />}
           />
+          <Route
+            exact
+            path="/mylistings"
+            render={() => (
+              <ListingListDisplay
+                message="You have no Listings at the moment."
+                filter={`owner=${profile_id}`}
+              />
+            )}
+          />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>
