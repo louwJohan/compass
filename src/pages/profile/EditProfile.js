@@ -56,8 +56,6 @@ const EditProfile = () => {
 
     formData.append("profile_name", profile_name);
     formData.append("profile_content", profile_content);
-    console.log(profile_name);
-    console.log(profile_content);
 
     if (imageInput?.current?.files[0]) {
       formData.append("profile_image", imageInput.current.files[0]);

@@ -4,13 +4,12 @@ import { useState } from "react";
 import { useCurrentUser } from "../../context/CurrentUserContext";
 import { axiosReq } from "../../api/axiosDefaults";
 import Asset from "../../components/Asset";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 
 const Profile = () => {
   const currentUser = useCurrentUser();
   const [profileData, setProfileData] = useState();
   const [hasLoaded, setHasLoaded] = useState(false);
-
   useEffect(() => {
     const fetchProfile = async () => {
       try {
@@ -23,7 +22,7 @@ const Profile = () => {
       }
     };
     fetchProfile();
-  }, [currentUser, profileData]);
+  }, [currentUser.profile_id, setProfileData]);
   return (
     <>
       {hasLoaded ? (
