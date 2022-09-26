@@ -16,25 +16,24 @@ const Profile = () => {
       try {
         const { data } = await axiosReq(`/profiles/${currentUser.profile_id}`);
         setProfileData(data);
+        console.log(profileData);
         setHasLoaded(true);
       } catch (err) {
         console.log(err);
       }
     };
     fetchProfile();
-  }, [currentUser]);
-  console.log(profileData, "Profile data");
-  console.log(currentUser, "Current User");
+  }, [currentUser, profileData]);
   return (
     <>
       {hasLoaded ? (
         <Row>
           <Col lg={6} md={6} sm={12} xs={12} className="p-4">
             <Card className="mt-5">
-              <Card.Img variant="top" src={profileData.image} />
+              <Card.Img variant="top" src={profileData.profile_image} />
               <Card.Body>
-                <Card.Title>{profileData.name}</Card.Title>
-                <Card.Text>{profileData.content}</Card.Text>
+                <Card.Title>{profileData.profile_name}</Card.Title>
+                <Card.Text>{profileData.profile_content}</Card.Text>
               </Card.Body>
               <ListGroup className="list-group-flush">
                 <ListGroupItem>
@@ -51,6 +50,7 @@ const Profile = () => {
               </ListGroup>
               <Card.Body>
                 <NavLink to={`/mylistings`}>My Listings</NavLink>
+                <NavLink to={"/edit_profile"}>Edit Profile</NavLink>
               </Card.Body>
             </Card>
           </Col>

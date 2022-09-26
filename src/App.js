@@ -12,6 +12,7 @@ import ListingPage from "./pages/listings/ListingPage";
 import { useCurrentUser } from "./context/CurrentUserContext";
 import ListingEditForm from "./pages/listings/ListingEditForm";
 import Profile from "./pages/profile/Profile";
+import EditProfile from "./pages/profile/EditProfile";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -58,6 +59,7 @@ function App() {
           <Route exact path="/signup" render={() => <SignUpForm />} />
           <Route exact path="/profile" render={() => <Profile />} />
           <Route exact path="/listing/:id" render={() => <ListingPage />} />
+          <Route exact path="/edit_profile" render={() => <EditProfile />} />
           <Route
             exact
             path="/listings/:id/edit"

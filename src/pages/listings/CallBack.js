@@ -33,13 +33,14 @@ const CallBack = (props) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
-
+    console.log(phone_number);
     formData.append("name", name);
     formData.append("surname", surname);
     formData.append("email", email);
     formData.append("title", title);
     formData.append("content", content);
     formData.append("listing", id);
+    formData.append("phone_number", phone_number);
     try {
       await axiosReq.post("/messages/", formData);
       history.push("/buy");
