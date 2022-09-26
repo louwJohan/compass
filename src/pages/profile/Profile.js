@@ -5,6 +5,7 @@ import { useCurrentUser } from "../../context/CurrentUserContext";
 import { axiosReq } from "../../api/axiosDefaults";
 import Asset from "../../components/Asset";
 import { NavLink, useParams } from "react-router-dom";
+import Messages from "./Messages";
 
 const Profile = () => {
   const currentUser = useCurrentUser();
@@ -15,14 +16,14 @@ const Profile = () => {
       try {
         const { data } = await axiosReq(`/profiles/${currentUser.profile_id}`);
         setProfileData(data);
-        console.log(profileData);
         setHasLoaded(true);
       } catch (err) {
         console.log(err);
       }
     };
     fetchProfile();
-  }, [currentUser.profile_id, setProfileData]);
+  }, [currentUser, setProfileData]);
+
   return (
     <>
       {hasLoaded ? (
@@ -53,7 +54,9 @@ const Profile = () => {
               </Card.Body>
             </Card>
           </Col>
-          <Col lg={6} md={6} sm={12} xs={12} className="p-4"></Col>
+          <Col lg={6} md={6} sm={12} xs={12} className="p-4">
+            <Messages />
+          </Col>
         </Row>
       ) : (
         <Asset spinner />
