@@ -3,6 +3,7 @@ import { Form, Button, Image, Alert } from "react-bootstrap";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useHistory } from "react-router";
 import { useCurrentUser } from "../../context/CurrentUserContext";
+import Asset from "../../components/Asset";
 
 const EditProfile = () => {
   const [profileData, setProfileData] = useState({
@@ -15,6 +16,7 @@ const EditProfile = () => {
   const [errors, setErrors] = useState({});
   const history = useHistory();
   const imageInput = useRef(null);
+  const [hasLoaded, setHasLoaded] = useState(false);
 
   useEffect(() => {
     const handleMount = async () => {
@@ -22,17 +24,16 @@ const EditProfile = () => {
         const { data } = await axiosReq.get(
           `/profiles/${currentUser.profile_id}`
         );
-        const { profile_name, profile_content, profile_image, is_owner } = data;
-
-        is_owner
-          ? setProfileData({ profile_name, profile_content, profile_image })
-          : history.push("/");
+        setProfileData(data);
+        hasLoaded(true);
       } catch (err) {
         console.log(err);
       }
     };
+
     handleMount();
-  }, [history, currentUser.profile_id]);
+    setHasLoaded(true);
+  }, [hasLoaded, currentUser]);
 
   const handleChange = (event) => {
     setProfileData({
@@ -73,60 +74,65 @@ const EditProfile = () => {
 
   return (
     <div>
-      <Form className="mt-5" onSubmit={handleSubmit}>
-        <Form.Group className="mt-5">
-          <figure>
-            <Image src={profile_image} rounded />
-          </figure>
-          <Form.File
-            id="profile_image"
-            label="Image"
-            accept="image/*"
-            onChange={handleChangeImage}
-            name="profile_image"
-            ref={imageInput}
-          />
-        </Form.Group>
-        {errors?.profile_image?.map((message, idx) => (
-          <Alert key={idx} variant="dark">
-            {message}
-          </Alert>
-        ))}
-        <Form.Group className="mb-3" controlId="profile_name">
-          <Form.Label>Name</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Name"
-            onChange={handleChange}
-            value={profile_name}
-            name="profile_name"
-          />
-        </Form.Group>
-        {errors?.profile_name?.map((message, idx) => (
-          <Alert key={idx} variant="dark">
-            {message}
-          </Alert>
-        ))}
-        <Form.Group className="mb-3" controlId="profile_content">
-          <Form.Label>Content</Form.Label>
-          <Form.Control
-            as="textarea"
-            rows={10}
-            placeholder="Say something about yourself"
-            onChange={handleChange}
-            value={profile_content}
-            name="profile_content"
-          />
-        </Form.Group>
-        {errors?.profile_content?.map((message, idx) => (
-          <Alert key={idx} variant="dark">
-            {message}
-          </Alert>
-        ))}
-        <Button variant="primary" type="submit" className="mt-3">
-          Submit
-        </Button>
-      </Form>
+      {" "}
+      {hasLoaded ? (
+        <Form className="mt-5" onSubmit={handleSubmit}>
+          <Form.Group className="mt-5">
+            <figure>
+              <Image src={profile_image} rounded />
+            </figure>
+            <Form.File
+              id="profile_image"
+              label="Image"
+              accept="image/*"
+              onChange={handleChangeImage}
+              name="profile_image"
+              ref={imageInput}
+            />
+          </Form.Group>
+          {errors?.profile_image?.map((message, idx) => (
+            <Alert key={idx} variant="dark">
+              {message}
+            </Alert>
+          ))}
+          <Form.Group className="mb-3" controlId="profile_name">
+            <Form.Label>Name</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Name"
+              onChange={handleChange}
+              value={profile_name}
+              name="profile_name"
+            />
+          </Form.Group>
+          {errors?.profile_name?.map((message, idx) => (
+            <Alert key={idx} variant="dark">
+              {message}
+            </Alert>
+          ))}
+          <Form.Group className="mb-3" controlId="profile_content">
+            <Form.Label>Content</Form.Label>
+            <Form.Control
+              as="textarea"
+              rows={6}
+              placeholder="Say something about yourself"
+              onChange={handleChange}
+              value={profile_content}
+              name="profile_content"
+            />
+          </Form.Group>
+          {errors?.profile_content?.map((message, idx) => (
+            <Alert key={idx} variant="dark">
+              {message}
+            </Alert>
+          ))}
+          <Button variant="primary" type="submit" className="mt-3">
+            Submit
+          </Button>
+        </Form>
+      ) : (
+        <Asset spinner />
+      )}
     </div>
   );
 };
