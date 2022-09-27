@@ -11,3 +11,7 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+.CardBorder {
+    border: 2px 006d77 ;
+    }

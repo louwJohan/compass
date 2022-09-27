@@ -4,13 +4,14 @@ import { useState } from "react";
 import { useCurrentUser } from "../../context/CurrentUserContext";
 import { axiosReq } from "../../api/axiosDefaults";
 import Asset from "../../components/Asset";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Messages from "./Messages";
 
 const Profile = () => {
   const currentUser = useCurrentUser();
   const [profileData, setProfileData] = useState();
   const [hasLoaded, setHasLoaded] = useState(false);
+
   useEffect(() => {
     const fetchProfile = async () => {
       try {
@@ -22,7 +23,7 @@ const Profile = () => {
       }
     };
     fetchProfile();
-  }, [currentUser, setProfileData]);
+  }, [currentUser, hasLoaded]);
 
   return (
     <>
@@ -55,7 +56,7 @@ const Profile = () => {
             </Card>
           </Col>
           <Col lg={6} md={6} sm={12} xs={12} className="p-4">
-            <Messages />
+            <Messages currentUser />
           </Col>
         </Row>
       ) : (

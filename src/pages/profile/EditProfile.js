@@ -4,6 +4,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 import { useHistory } from "react-router";
 import { useCurrentUser } from "../../context/CurrentUserContext";
 import Asset from "../../components/Asset";
+import { NavLink } from "react-router-dom";
 
 const EditProfile = () => {
   const [profileData, setProfileData] = useState({
@@ -133,6 +134,9 @@ const EditProfile = () => {
       ) : (
         <Asset spinner />
       )}
+      <NavLink to="/profile">
+        <Button className="mt-3">Back</Button>
+      </NavLink>
     </div>
   );
 };
