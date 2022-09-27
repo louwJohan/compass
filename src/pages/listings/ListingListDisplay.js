@@ -10,12 +10,14 @@ import appStyles from "../../App.module.css";
 import Form from "react-bootstrap/Form";
 import ListingCard from "./ListingCard";
 import { CardGroup } from "react-bootstrap";
+import ReactPaginate from "react-paginate";
 
 const ListingListDisplay = ({ message, filter = "" }) => {
   const [listings, setListings] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
   const [query, setQuery] = useState("");
+  const [pageCount, setpageCount] = useState(0);
 
   useEffect(() => {
     const fetchListings = async () => {
@@ -24,12 +26,12 @@ const ListingListDisplay = ({ message, filter = "" }) => {
           `/listings/?${filter}&search=${query}`
         );
         setListings(data);
+        setpageCount(Math.ceil(data.count / 10));
         setHasLoaded(true);
       } catch (err) {
         console.log(err);
       }
     };
-
     setHasLoaded(false);
     const timer = setTimeout(() => {
       fetchListings();
@@ -38,6 +40,19 @@ const ListingListDisplay = ({ message, filter = "" }) => {
       clearTimeout(timer);
     };
   }, [filter, query, pathname]);
+
+  const handlePageClick = async (data) => {
+    let currentPage = data.selected + 1;
+    try {
+      const { data } = await axiosReq.get(
+        `/listings/?${filter}&search=${query}&page=${currentPage}`
+      );
+      setListings(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <Row className="text-center">
       <Col>
@@ -69,6 +84,25 @@ const ListingListDisplay = ({ message, filter = "" }) => {
               <Asset spinner />
             </Container>
           )}
+          <ReactPaginate
+            previousLabel={"previous"}
+            nextLabel={"next"}
+            breakLabel={"..."}
+            pageCount={pageCount}
+            marginPagesDisplayed={2}
+            pageRangeDisplayed={3}
+            onPageChange={handlePageClick}
+            containerClassName={"pagination justify-content-center"}
+            pageClassName={"page-item"}
+            pageLinkClassName={"page-link"}
+            previousClassName={"page-item"}
+            previousLinkClassName={"page-link"}
+            nextClassName={"page-item"}
+            nextLinkClassName={"page-link"}
+            breakClassName={"page-item"}
+            breakLinkClassName={"page-link"}
+            activeClassName={"active"}
+          />
         </CardGroup>
       </Col>
     </Row>
