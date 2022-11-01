@@ -40,11 +40,13 @@ const NavBar = () => {
           Sign out
         </NavLink>
         <NavLink to="/profile" className="ml-auto">
-          Profile
+          <Avatar src={currentUser?.profile_image} text="Profile" height={40} />
         </NavLink>
       </Nav>
     </>
   );
+
+  console.log(currentUser);
   const LoggedOut = (
     <>
       <Nav>

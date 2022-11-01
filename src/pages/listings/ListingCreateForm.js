@@ -90,7 +90,6 @@ const ListingCreateForm = () => {
       const { data } = await axiosReq.post("/listings/", formData);
       history.push(`/listing/${data.id}`);
     } catch (err) {
-      // console.log(err);
       if (err.response?.status !== 401) {
         setHasLoaded(true);
         setErrors(err.response?.data);

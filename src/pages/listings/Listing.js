@@ -102,56 +102,56 @@ const Listing = (props) => {
           <Carousel variant="dark">
             <Carousel.Item>
               <img
-                className="d-block w-100"
+                className={`d-block w-100 ${styles.ListingImg}`}
                 src={image_one}
                 alt="First slide"
               />
             </Carousel.Item>
             <Carousel.Item>
               <img
-                className="d-block w-100"
+                className={`d-block w-100 ${styles.ListingImg}`}
                 src={image_two}
                 alt="Second slide"
               />
             </Carousel.Item>
             <Carousel.Item>
               <img
-                className="d-block w-100"
+                className={`d-block w-100 ${styles.ListingImg}`}
                 src={image_three}
                 alt="Third slide"
               />
             </Carousel.Item>
             <Carousel.Item>
               <img
-                className="d-block w-100"
+                className={`d-block w-100 ${styles.ListingImg}`}
                 src={image_four}
                 alt="Third slide"
               />
             </Carousel.Item>
             <Carousel.Item>
               <img
-                className="d-block w-100"
+                className={`d-block w-100 ${styles.ListingImg}`}
                 src={image_five}
                 alt="Third slide"
               />
             </Carousel.Item>
             <Carousel.Item>
               <img
-                className="d-block w-100"
+                className={`d-block w-100 ${styles.ListingImg}`}
                 src={image_six}
                 alt="Third slide"
               />
             </Carousel.Item>
             <Carousel.Item>
               <img
-                className="d-block w-100"
+                className={`d-block w-100 ${styles.ListingImg}`}
                 src={image_seven}
                 alt="Third slide"
               />
             </Carousel.Item>
             <Carousel.Item>
               <img
-                className="d-block w-100 carousel-img"
+                className={`d-block w-100 ${styles.ListingImg}`}
                 src={image_eight}
                 alt="Third slide"
               />

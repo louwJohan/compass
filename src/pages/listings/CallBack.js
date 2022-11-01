@@ -9,7 +9,6 @@ import {
 
 const CallBack = (props) => {
   const is_owner = props;
-  console.log(is_owner);
   const [data, setData] = useState({
     name: "",
     surname: "",
@@ -33,7 +32,6 @@ const CallBack = (props) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
-    console.log(phone_number);
     formData.append("name", name);
     formData.append("surname", surname);
     formData.append("email", email);
@@ -44,6 +42,7 @@ const CallBack = (props) => {
     try {
       await axiosReq.post("/messages/", formData);
       history.push("/buy");
+      alert("Thank you! Your message will be sent to the listing owner!");
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {

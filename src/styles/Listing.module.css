@@ -14,14 +14,14 @@
     color:red;
 }
 
-img {
+.ListingImg {
     height: 70vh;
     object-fit: cover;
     width: 100%;
 }
 
 @media screen and (max-width:900px) {
-    img {
+    .ListingImg {
         height: 50vh;
         object-fit: cover;
         width: 100%;
@@ -30,7 +30,7 @@ img {
 }
     
 @media screen and (max-width:600px) {
-    img {
+    .ListingImg {
         height: 40vh;
         object-fit: cover;
         width: 100%;

@@ -115,8 +115,6 @@ const ListingEditForm = () => {
 
   const handleChangeImage = (event) => {
     if (event.target.files.length) {
-      console.log(event.target.files);
-      console.log(image_one);
       setListingData({
         ...listingData,
         [event.target.name]: URL.createObjectURL(event.target.files[0]),

@@ -40,12 +40,11 @@ const Messages = () => {
             <h4>Re:{message.title}</h4>
             <hr></hr>
             <p>Content:{message.content}</p>
-            <p>
-              Name:{message.name} Surname: {message.surname}
-            </p>
+            <p>Name:{message.name}</p>
+            <p> Surname: {message.surname}</p>
             <p>Tel:{message.phone_number}</p>
             <p>Email: {message.email}</p>
-            <p>Listing:</p>
+            <p>Listing: {message.listing}</p>
           </Container>
         ))
       ) : (
