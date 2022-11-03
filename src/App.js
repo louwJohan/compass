@@ -16,7 +16,7 @@ import EditProfile from "./pages/profile/EditProfile";
 
 function App() {
   const currentUser = useCurrentUser();
-  const profile_id = currentUser?.profile_id || "";
+  const pk = currentUser?.pk || "";
   return (
     <div className={styles.App}>
       <NavBar />
@@ -29,7 +29,7 @@ function App() {
             path="/buy"
             render={() => (
               <ListingListDisplay
-                message="No results found. Adjust the search keyword or follow a user."
+                message="No results found."
                 filter={`commerce_type=sell`}
               />
             )}
@@ -40,7 +40,7 @@ function App() {
             path="/rent"
             render={() => (
               <ListingListDisplay
-                message="No results found. Adjust the search keyword or follow a user."
+                message="No results found."
                 filter={`commerce_type=rent`}
               />
             )}
@@ -50,8 +50,8 @@ function App() {
             path="/saved"
             render={() => (
               <ListingListDisplay
-                message="No results found. Adjust the search keyword or follow a user."
-                filter={`saved__owner__profile=${profile_id}&ordering=-saved__created_at&`}
+                message="You have no saved listings."
+                filter={`saved__owner__profile=${pk}&ordering=-saved__created_at&`}
               />
             )}
           />
@@ -70,8 +70,8 @@ function App() {
             path="/mylistings"
             render={() => (
               <ListingListDisplay
-                message="You have no Listings at the moment."
-                filter={`owner=${profile_id}`}
+                message="You have no listings at the moment."
+                filter={`owner=${pk}`}
               />
             )}
           />
