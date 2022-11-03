@@ -11,6 +11,7 @@ import {
 import axios from "axios";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 import Avatar from "../components/Avatar.js";
+import compass from "../assets/compass.png";
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
@@ -70,7 +71,10 @@ const NavBar = () => {
   return (
     <div>
       <NavLink to="/" className="text-center">
-        <h1>Compass</h1>
+        <div>
+          <img src={compass} alt="logo" height="50" />
+          <span className={styles.Logo}>Compass</span>
+        </div>
       </NavLink>
 
       <Navbar

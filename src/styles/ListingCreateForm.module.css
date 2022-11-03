@@ -1,6 +1,11 @@
 .Upload {
     object-fit: cover;
-    width: 300px;
+    width: 50%;
    
 }
 
+
+
+  /* input[type="file"] {
+    display: none;
+  } */

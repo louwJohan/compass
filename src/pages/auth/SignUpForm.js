@@ -29,6 +29,9 @@ const SignUpForm = () => {
     event.preventDefault();
     try {
       await axios.post("dj-rest-auth/registration/", signUpData);
+      alert(
+        "Thank you for joining! You can now add listings and request callbacks and save you favorite properties!"
+      );
       history.push("/signin");
     } catch (err) {
       setErrors(err.response?.data);

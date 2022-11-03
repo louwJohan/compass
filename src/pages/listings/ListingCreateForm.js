@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Button } from "react-bootstrap";
+import { Container, Button, Row, Col } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useHistory } from "react-router";
@@ -88,6 +88,7 @@ const ListingCreateForm = () => {
 
     try {
       const { data } = await axiosReq.post("/listings/", formData);
+      alert("Thank you! You will be redirected to you listing!");
       history.push(`/listing/${data.id}`);
     } catch (err) {
       if (err.response?.status !== 401) {
@@ -219,239 +220,244 @@ const ListingCreateForm = () => {
                 {message}
               </Alert>
             ))}
-
-            <Form.Group className="text-center">
-              <figure>
-                <Image
-                  className={styles.Upload}
-                  src={
-                    image_one.length < 1
-                      ? Upload
-                      : URL.createObjectURL(image_one)
-                  }
-                  rounded
-                />
-              </figure>
-              <Form.Label
-                className="d-flex justify-content-center"
-                htmlFor="image-upload"
-              ></Form.Label>
-              <Form.File
-                id="image-upload"
-                accept="image/*"
-                onChange={handleChangeImage}
-                name="image_one"
-                required
-              />
-            </Form.Group>
-            {errors?.image_one?.map((message, idx) => (
-              <Alert key={idx} variant="dark">
-                {message}
-              </Alert>
-            ))}
-            <Form.Group className="text-center">
-              <figure>
-                <Image
-                  className={styles.Upload}
-                  src={
-                    image_two.length < 1
-                      ? Upload
-                      : URL.createObjectURL(image_two)
-                  }
-                  rounded
-                />
-              </figure>
-              <Form.Label
-                className="d-flex justify-content-center"
-                htmlFor="image-upload"
-              ></Form.Label>
-              <Form.File
-                id="image-upload"
-                accept="image/*"
-                onChange={handleChangeImage}
-                name="image_two"
-                required
-              />
-            </Form.Group>
-            {errors?.image_two?.map((message, idx) => (
-              <Alert key={idx} variant="dark">
-                {message}
-              </Alert>
-            ))}
-            <Form.Group className="text-center">
-              <figure>
-                <Image
-                  className={styles.Upload}
-                  src={
-                    image_three.length < 1
-                      ? Upload
-                      : URL.createObjectURL(image_three)
-                  }
-                  rounded
-                />
-              </figure>
-              <Form.Label
-                className="d-flex justify-content-center"
-                htmlFor="image-upload"
-              ></Form.Label>
-              <Form.File
-                id="image-upload"
-                accept="image/*"
-                onChange={handleChangeImage}
-                name="image_three"
-                required
-              />
-            </Form.Group>
-            {errors?.image_three?.map((message, idx) => (
-              <Alert key={idx} variant="dark">
-                {message}
-              </Alert>
-            ))}
-            <Form.Group className="text-center">
-              <figure>
-                <Image
-                  className={styles.Upload}
-                  src={
-                    image_four.length < 1
-                      ? Upload
-                      : URL.createObjectURL(image_four)
-                  }
-                  rounded
-                />
-              </figure>
-              <Form.Label
-                className="d-flex justify-content-center"
-                htmlFor="image-upload"
-              ></Form.Label>
-              <Form.File
-                id="image-upload"
-                accept="image/*"
-                onChange={handleChangeImage}
-                name="image_four"
-                required
-              />
-            </Form.Group>
-            {errors?.image_four?.map((message, idx) => (
-              <Alert key={idx} variant="dark">
-                {message}
-              </Alert>
-            ))}
-            <Form.Group className="text-center">
-              <figure>
-                <Image
-                  className={styles.Upload}
-                  src={
-                    image_five.length < 1
-                      ? Upload
-                      : URL.createObjectURL(image_five)
-                  }
-                  rounded
-                />
-              </figure>
-              <Form.Label
-                className="d-flex justify-content-center"
-                htmlFor="image-upload"
-              ></Form.Label>
-              <Form.File
-                id="image-upload"
-                accept="image/*"
-                onChange={handleChangeImage}
-                name="image_five"
-                required
-              />
-            </Form.Group>
-            {errors?.image_five?.map((message, idx) => (
-              <Alert key={idx} variant="dark">
-                {message}
-              </Alert>
-            ))}
-            <Form.Group className="text-center">
-              <figure>
-                <Image
-                  className={styles.Upload}
-                  src={
-                    image_six.length < 1
-                      ? Upload
-                      : URL.createObjectURL(image_six)
-                  }
-                  rounded
-                />
-              </figure>
-              <Form.Label
-                className="d-flex justify-content-center"
-                htmlFor="image-upload"
-              ></Form.Label>
-              <Form.File
-                id="image-upload"
-                accept="image/*"
-                onChange={handleChangeImage}
-                name="image_six"
-                required
-              />
-            </Form.Group>
-            {errors?.image_six?.map((message, idx) => (
-              <Alert key={idx} variant="dark">
-                {message}
-              </Alert>
-            ))}
-            <Form.Group className="text-center">
-              <figure>
-                <Image
-                  className={styles.Upload}
-                  src={
-                    image_seven.length < 1
-                      ? Upload
-                      : URL.createObjectURL(image_seven)
-                  }
-                  rounded
-                />
-              </figure>
-              <Form.Label
-                className="d-flex justify-content-center"
-                htmlFor="image-upload"
-              ></Form.Label>
-              <Form.File
-                id="image-upload"
-                accept="image/*"
-                onChange={handleChangeImage}
-                name="image_seven"
-                required
-              />
-            </Form.Group>
-            {errors?.image_seven?.map((message, idx) => (
-              <Alert key={idx} variant="dark">
-                {message}
-              </Alert>
-            ))}
-            <Form.Group className="text-center">
-              <figure>
-                <Image
-                  className={styles.Upload}
-                  src={
-                    image_eight.length < 1
-                      ? Upload
-                      : URL.createObjectURL(image_eight)
-                  }
-                  rounded
-                />
-              </figure>
-              <Form.Label
-                className="d-flex justify-content-center"
-                htmlFor="image-upload"
-              ></Form.Label>
-              <Form.File
-                id="image-upload"
-                accept="image/*"
-                onChange={handleChangeImage}
-                name="image_eight"
-                required
-              />
-            </Form.Group>
-            {errors?.image_eight?.map((message, idx) => (
-              <Alert key={idx} variant="dark">
-                {message}
-              </Alert>
-            ))}
+            <Row>
+              <Col>
+                <Form.Group className="text-center">
+                  <figure>
+                    <Image
+                      className={styles.Upload}
+                      src={
+                        image_one.length < 1
+                          ? Upload
+                          : URL.createObjectURL(image_one)
+                      }
+                      rounded
+                    />
+                  </figure>
+                  <Form.Label
+                    className="d-flex justify-content-center"
+                    htmlFor="image-upload"
+                  ></Form.Label>
+                  <Form.File
+                    id="image-one"
+                    accept="image/*"
+                    onChange={handleChangeImage}
+                    name="image_one"
+                    required
+                  />
+                </Form.Group>
+                {errors?.image_one?.map((message, idx) => (
+                  <Alert key={idx} variant="dark">
+                    {message}
+                  </Alert>
+                ))}
+                <Form.Group className="text-center">
+                  <figure>
+                    <Image
+                      className={styles.Upload}
+                      src={
+                        image_two.length < 1
+                          ? Upload
+                          : URL.createObjectURL(image_two)
+                      }
+                      rounded
+                    />
+                  </figure>
+                  <Form.Label
+                    className="d-flex justify-content-center"
+                    htmlFor="image-upload"
+                  ></Form.Label>
+                  <Form.File
+                    id="image-two"
+                    accept="image/*"
+                    onChange={handleChangeImage}
+                    name="image_two"
+                    required
+                  />
+                </Form.Group>
+                {errors?.image_two?.map((message, idx) => (
+                  <Alert key={idx} variant="dark">
+                    {message}
+                  </Alert>
+                ))}
+                <Form.Group className="text-center">
+                  <figure>
+                    <Image
+                      className={styles.Upload}
+                      src={
+                        image_three.length < 1
+                          ? Upload
+                          : URL.createObjectURL(image_three)
+                      }
+                      rounded
+                    />
+                  </figure>
+                  <Form.Label
+                    className="d-flex justify-content-center"
+                    htmlFor="image-upload"
+                  ></Form.Label>
+                  <Form.File
+                    id="image-upload"
+                    accept="image/*"
+                    onChange={handleChangeImage}
+                    name="image_three"
+                    required
+                  />
+                </Form.Group>
+                {errors?.image_three?.map((message, idx) => (
+                  <Alert key={idx} variant="dark">
+                    {message}
+                  </Alert>
+                ))}
+                <Form.Group className="text-center">
+                  <figure>
+                    <Image
+                      className={styles.Upload}
+                      src={
+                        image_four.length < 1
+                          ? Upload
+                          : URL.createObjectURL(image_four)
+                      }
+                      rounded
+                    />
+                  </figure>
+                  <Form.Label
+                    className="d-flex justify-content-center"
+                    htmlFor="image-upload"
+                  ></Form.Label>
+                  <Form.File
+                    id="image-upload"
+                    accept="image/*"
+                    onChange={handleChangeImage}
+                    name="image_four"
+                    required
+                  />
+                </Form.Group>
+                {errors?.image_four?.map((message, idx) => (
+                  <Alert key={idx} variant="dark">
+                    {message}
+                  </Alert>
+                ))}
+              </Col>
+              <Col>
+                <Form.Group className="text-center">
+                  <figure>
+                    <Image
+                      className={styles.Upload}
+                      src={
+                        image_five.length < 1
+                          ? Upload
+                          : URL.createObjectURL(image_five)
+                      }
+                      rounded
+                    />
+                  </figure>
+                  <Form.Label
+                    className="d-flex justify-content-center"
+                    htmlFor="image-upload"
+                  ></Form.Label>
+                  <Form.File
+                    id="image-upload"
+                    accept="image/*"
+                    onChange={handleChangeImage}
+                    name="image_five"
+                    required
+                  />
+                </Form.Group>
+                {errors?.image_five?.map((message, idx) => (
+                  <Alert key={idx} variant="dark">
+                    {message}
+                  </Alert>
+                ))}
+                <Form.Group className="text-center">
+                  <figure>
+                    <Image
+                      className={styles.Upload}
+                      src={
+                        image_six.length < 1
+                          ? Upload
+                          : URL.createObjectURL(image_six)
+                      }
+                      rounded
+                    />
+                  </figure>
+                  <Form.Label
+                    className="d-flex justify-content-center"
+                    htmlFor="image-upload"
+                  ></Form.Label>
+                  <Form.File
+                    id="image-upload"
+                    accept="image/*"
+                    onChange={handleChangeImage}
+                    name="image_six"
+                    required
+                  />
+                </Form.Group>
+                {errors?.image_six?.map((message, idx) => (
+                  <Alert key={idx} variant="dark">
+                    {message}
+                  </Alert>
+                ))}
+                <Form.Group className="text-center">
+                  <figure>
+                    <Image
+                      className={styles.Upload}
+                      src={
+                        image_seven.length < 1
+                          ? Upload
+                          : URL.createObjectURL(image_seven)
+                      }
+                      rounded
+                    />
+                  </figure>
+                  <Form.Label
+                    className="d-flex justify-content-center"
+                    htmlFor="image-upload"
+                  ></Form.Label>
+                  <Form.File
+                    id="image-upload"
+                    accept="image/*"
+                    onChange={handleChangeImage}
+                    name="image_seven"
+                    required
+                  />
+                </Form.Group>
+                {errors?.image_seven?.map((message, idx) => (
+                  <Alert key={idx} variant="dark">
+                    {message}
+                  </Alert>
+                ))}
+                <Form.Group className="text-center">
+                  <figure>
+                    <Image
+                      className={styles.Upload}
+                      src={
+                        image_eight.length < 1
+                          ? Upload
+                          : URL.createObjectURL(image_eight)
+                      }
+                      rounded
+                    />
+                  </figure>
+                  <Form.Label
+                    className="d-flex justify-content-center"
+                    htmlFor="image-upload"
+                  ></Form.Label>
+                  <Form.File
+                    id="image-upload"
+                    accept="image/*"
+                    onChange={handleChangeImage}
+                    name="image_eight"
+                    required
+                  />
+                </Form.Group>
+                {errors?.image_eight?.map((message, idx) => (
+                  <Alert key={idx} variant="dark">
+                    {message}
+                  </Alert>
+                ))}
+              </Col>
+            </Row>
 
             <Button variant="primary" type="submit" className="mt-5">
               Submit

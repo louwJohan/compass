@@ -162,6 +162,7 @@ const ListingEditForm = () => {
 
     try {
       const { data } = await axiosReq.put(`/listings/${id}`, formData);
+      alert("Thank you! You will be redirected to you listing!");
       history.push(`/listing/${data.id}`);
     } catch (err) {
       // console.log(err);

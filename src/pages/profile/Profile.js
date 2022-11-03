@@ -47,7 +47,6 @@ const Profile = () => {
                     <p>You have {profileData.saved_count} listings saved</p>
                   )}
                 </ListGroupItem>
-                <ListGroupItem>Vestibulum at eros</ListGroupItem>
               </ListGroup>
               <Card.Body>
                 <NavLink to={`/mylistings`}>My Listings</NavLink>

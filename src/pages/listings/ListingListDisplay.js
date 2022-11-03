@@ -16,14 +16,17 @@ const ListingListDisplay = ({ message, filter = "" }) => {
   const [listings, setListings] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
-  const [query, setQuery] = useState("");
+  const [area, setArea] = useState("");
+  const [price, setPrice] = useState("");
+  const [bedrooms, setBedrooms] = useState("");
+  const [type, setType] = useState("");
   const [pageCount, setpageCount] = useState(0);
 
   useEffect(() => {
     const fetchListings = async () => {
       try {
         const { data } = await axiosReq.get(
-          `/listings/?${filter}&search=${query}`
+          `/listings/?${filter}&area=${area}&price=${price}&bedrooms=${bedrooms}&type_of_property=${type}`
         );
         setListings(data);
         setpageCount(Math.ceil(data.count / 10));
@@ -39,13 +42,13 @@ const ListingListDisplay = ({ message, filter = "" }) => {
     return () => {
       clearTimeout(timer);
     };
-  }, [filter, query, pathname]);
+  }, [filter, area, pathname, bedrooms, price, type]);
 
   const handlePageClick = async (data) => {
     let currentPage = data.selected + 1;
     try {
       const { data } = await axiosReq.get(
-        `/listings/?${filter}&search=${query}&page=${currentPage}`
+        `/listings/?${filter}&area=${area}&price=${price}&bedrooms=${bedrooms}&type_of_property=${type}&page=${currentPage}`
       );
       setListings(data);
     } catch (err) {
@@ -54,18 +57,51 @@ const ListingListDisplay = ({ message, filter = "" }) => {
   };
 
   return (
-    <Row className="text-center">
+    <Row className="text-center mt-3">
       <Col>
-        <i className={`fas fa-search`} />
         <Form onSubmit={(event) => event.preventDefault()} className="mb-5">
           <Form.Control
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
+            value={area}
+            onChange={(event) => setArea(event.target.value)}
             type="text"
             className="mr-sm-2"
-            placeholder="Search listings"
+            placeholder="Search Area"
           />
         </Form>
+        <Form onSubmit={(event) => event.preventDefault()} className="mb-5">
+          <Form.Control
+            value={price}
+            onChange={(event) => setPrice(event.target.value)}
+            type="text"
+            className="mr-sm-2"
+            placeholder="Search price"
+          />
+        </Form>
+        <Form onSubmit={(event) => event.preventDefault()} className="mb-5">
+          <Form.Control
+            value={bedrooms}
+            onChange={(event) => setBedrooms(event.target.value)}
+            type="text"
+            className="mr-sm-2"
+            placeholder="Search Number of Bedrooms"
+          />
+        </Form>
+        <Form.Group controlId="type_of_property">
+          <Form.Control
+            as="select"
+            onChange={(event) => setType(event.target.value)}
+            value={type}
+            name="type_of_property"
+            placeholder="Search"
+          >
+            <option></option>
+            <option value="detached_house">Detached House</option>
+            <option value="terrace_house">Terrace House</option>
+            <option value="apartment">Apartment</option>
+            <option value="semi_detached">Semi-detached</option>
+            <option value="bungalows">Bungalows</option>
+          </Form.Control>
+        </Form.Group>
         <CardGroup>
           {hasLoaded ? (
             <>
