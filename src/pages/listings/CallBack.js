@@ -52,7 +52,7 @@ const CallBack = (props) => {
   };
 
   const LoggedIn = (
-    <Accordion>
+    <Accordion lg={6} md={6} sm={12} xs={12}>
       <Card>
         <Card.Header>
           <Accordion.Toggle as={Button} variant="link" eventKey="0">

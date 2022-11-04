@@ -221,7 +221,7 @@ const ListingCreateForm = () => {
               </Alert>
             ))}
             <Row>
-              <Col>
+              <Col className="mt-3">
                 <Form.Group className="text-center">
                   <figure>
                     <Image
@@ -339,7 +339,7 @@ const ListingCreateForm = () => {
                   </Alert>
                 ))}
               </Col>
-              <Col>
+              <Col className="mt-3">
                 <Form.Group className="text-center">
                   <figure>
                     <Image

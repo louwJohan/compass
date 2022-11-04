@@ -57,91 +57,97 @@ const ListingListDisplay = ({ message, filter = "" }) => {
   };
 
   return (
-    <Row className="text-center mt-3">
-      <Col>
-        <Form onSubmit={(event) => event.preventDefault()} className="mb-5">
-          <Form.Control
-            value={area}
-            onChange={(event) => setArea(event.target.value)}
-            type="text"
-            className="mr-sm-2"
-            placeholder="Search Area"
-          />
-        </Form>
-        <Form onSubmit={(event) => event.preventDefault()} className="mb-5">
-          <Form.Control
-            value={price}
-            onChange={(event) => setPrice(event.target.value)}
-            type="text"
-            className="mr-sm-2"
-            placeholder="Search price"
-          />
-        </Form>
-        <Form onSubmit={(event) => event.preventDefault()} className="mb-5">
-          <Form.Control
-            value={bedrooms}
-            onChange={(event) => setBedrooms(event.target.value)}
-            type="text"
-            className="mr-sm-2"
-            placeholder="Search Number of Bedrooms"
-          />
-        </Form>
-        <Form.Group controlId="type_of_property">
-          <Form.Control
-            as="select"
-            onChange={(event) => setType(event.target.value)}
-            value={type}
-            name="type_of_property"
-            placeholder="Search"
-          >
-            <option></option>
-            <option value="detached_house">Detached House</option>
-            <option value="terrace_house">Terrace House</option>
-            <option value="apartment">Apartment</option>
-            <option value="semi_detached">Semi-detached</option>
-            <option value="bungalows">Bungalows</option>
-          </Form.Control>
-        </Form.Group>
-        <CardGroup>
-          {hasLoaded ? (
-            <>
-              {listings.results.length ? (
-                listings.results.map((listing) => (
-                  <ListingCard key={listing.id} {...listing} />
-                ))
-              ) : (
-                <Container className={appStyles.Content}>
-                  <Asset src={NoResults} message={message} />
-                </Container>
-              )}
-            </>
-          ) : (
-            <Container className={appStyles.Content}>
-              <Asset spinner />
-            </Container>
-          )}
-        </CardGroup>
-        <ReactPaginate
-          previousLabel={"previous"}
-          nextLabel={"next"}
-          breakLabel={"..."}
-          pageCount={pageCount}
-          marginPagesDisplayed={2}
-          pageRangeDisplayed={3}
-          onPageChange={handlePageClick}
-          containerClassName={"pagination justify-content-center"}
-          pageClassName={"page-item"}
-          pageLinkClassName={"page-link"}
-          previousClassName={"page-item"}
-          previousLinkClassName={"page-link"}
-          nextClassName={"page-item"}
-          nextLinkClassName={"page-link"}
-          breakClassName={"page-item"}
-          breakLinkClassName={"page-link"}
-          activeClassName={"active"}
-        />
-      </Col>
-    </Row>
+    <>
+      <h4 className="text-center mt-3">Search</h4>
+      <Row className="text-center mt-3 gx-0 gx-md-2 px-0">
+        <Col className="col-12 col-lg-6 text-center">
+          <Form onSubmit={(event) => event.preventDefault()} className="mb-3">
+            <Form.Control
+              value={area}
+              onChange={(event) => setArea(event.target.value)}
+              type="text"
+              className="mr-sm-2"
+              placeholder="Search Area"
+            />
+          </Form>
+          <Form onSubmit={(event) => event.preventDefault()} className="mb-3">
+            <Form.Control
+              value={price}
+              onChange={(event) => setPrice(event.target.value)}
+              type="text"
+              className="mr-sm-2"
+              placeholder="Search price"
+            />
+          </Form>
+        </Col>
+        <Col className="col-12 col-lg-6 text-center">
+          <Form onSubmit={(event) => event.preventDefault()} className="mb-3">
+            <Form.Control
+              value={bedrooms}
+              onChange={(event) => setBedrooms(event.target.value)}
+              type="text"
+              className="mr-sm-2"
+              placeholder="Search Number of Bedrooms"
+            />
+          </Form>
+          <Form.Group controlId="type_of_property">
+            <Form.Control
+              as="select"
+              onChange={(event) => setType(event.target.value)}
+              value={type}
+              name="type_of_property"
+              placeholder="Search"
+            >
+              <option>Type of Property...</option>
+              <option value="detached_house">Detached House</option>
+              <option value="terrace_house">Terrace House</option>
+              <option value="apartment">Apartment</option>
+              <option value="semi_detached">Semi-detached</option>
+              <option value="bungalows">Bungalows</option>
+            </Form.Control>
+          </Form.Group>
+        </Col>
+      </Row>
+
+      <CardGroup>
+        {hasLoaded ? (
+          <>
+            {listings.results.length ? (
+              listings.results.map((listing) => (
+                <ListingCard key={listing.id} {...listing} />
+              ))
+            ) : (
+              <Container className={appStyles.Content}>
+                <Asset src={NoResults} message={message} />
+              </Container>
+            )}
+          </>
+        ) : (
+          <Container className={appStyles.Content}>
+            <Asset spinner />
+          </Container>
+        )}
+      </CardGroup>
+      <ReactPaginate
+        previousLabel={"previous"}
+        nextLabel={"next"}
+        breakLabel={"..."}
+        pageCount={pageCount}
+        marginPagesDisplayed={2}
+        pageRangeDisplayed={3}
+        onPageChange={handlePageClick}
+        containerClassName={"pagination justify-content-center"}
+        pageClassName={"page-item"}
+        pageLinkClassName={"page-link"}
+        previousClassName={"page-item"}
+        previousLinkClassName={"page-link"}
+        nextClassName={"page-item"}
+        nextLinkClassName={"page-link"}
+        breakClassName={"page-item"}
+        breakLinkClassName={"page-link"}
+        activeClassName={"active"}
+      />
+    </>
   );
 };
 

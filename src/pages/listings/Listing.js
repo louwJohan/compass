@@ -97,9 +97,9 @@ const Listing = (props) => {
 
   return (
     <>
-      <Row>
+      <Row className="g-0">
         <Col lg={6} md={6} sm={12} xs={12}>
-          <Carousel variant="dark">
+          <Carousel variant="dark" className="mt-5">
             <Carousel.Item>
               <img
                 className={`d-block w-100 ${styles.ListingImg}`}
