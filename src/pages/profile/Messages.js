@@ -3,6 +3,7 @@ import { Container } from "react-bootstrap";
 import { axiosReq } from "../../api/axiosDefaults";
 import Asset from "../../components/Asset";
 import { useCurrentUser } from "../../context/CurrentUserContext";
+import { NavLink } from "react-router-dom";
 
 const Messages = () => {
   const currentUser = useCurrentUser();
@@ -35,7 +36,7 @@ const Messages = () => {
       <h1>Call Back</h1>
       {hasLoaded ? (
         message_list.map((message) => (
-          <Container>
+          <Container key={message.id}>
             <hr></hr>
             <h4>Re:{message.title}</h4>
             <hr></hr>
@@ -44,7 +45,9 @@ const Messages = () => {
             <p> Surname: {message.surname}</p>
             <p>Tel:{message.phone_number}</p>
             <p>Email: {message.email}</p>
-            <p>Listing: {message.listing}</p>
+            <NavLink to={`/listing/${message.listing}`}>
+              Listing Details
+            </NavLink>
           </Container>
         ))
       ) : (

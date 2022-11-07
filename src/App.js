@@ -16,7 +16,7 @@ import EditProfile from "./pages/profile/EditProfile";
 
 function App() {
   const currentUser = useCurrentUser();
-  const pk = currentUser?.pk || "";
+  const pk = currentUser?.profile_id || "";
   return (
     <div className={styles.App}>
       <NavBar />

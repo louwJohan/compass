@@ -48,7 +48,7 @@ const ListingListDisplay = ({ message, filter = "" }) => {
     let currentPage = data.selected + 1;
     try {
       const { data } = await axiosReq.get(
-        `/listings/?${filter}&area=${area}&price=${price}&bedrooms=${bedrooms}&type_of_property=${type}&page=${currentPage}`
+        `/listings/?${filter}$area=${area}&price=${price}&bedrooms=${bedrooms}&type_of_property=${type}&page=${currentPage}`
       );
       setListings(data);
     } catch (err) {
