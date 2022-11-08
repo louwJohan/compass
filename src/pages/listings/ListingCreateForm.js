@@ -100,6 +100,7 @@ const ListingCreateForm = () => {
 
   return (
     <div>
+      <h4 className="mb=3 mt-3 text-center">Create a Listing</h4>
       {hasLoaded ? (
         <Container className="mt-5">
           <Form onSubmit={handleSubmit}>
@@ -220,6 +221,8 @@ const ListingCreateForm = () => {
                 {message}
               </Alert>
             ))}
+
+            <h4 className="mt-3 mb-3 text-center">Upload your Images</h4>
             <Row>
               <Col className="mt-3">
                 <Form.Group className="text-center">

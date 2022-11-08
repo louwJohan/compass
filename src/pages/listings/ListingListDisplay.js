@@ -9,7 +9,7 @@ import NoResults from "../../assets/no-results.png";
 import appStyles from "../../App.module.css";
 import Form from "react-bootstrap/Form";
 import ListingCard from "./ListingCard";
-import { CardGroup } from "react-bootstrap";
+import { CardGroup, FormLabel } from "react-bootstrap";
 import ReactPaginate from "react-paginate";
 
 const ListingListDisplay = ({ message, filter = "" }) => {
@@ -59,46 +59,46 @@ const ListingListDisplay = ({ message, filter = "" }) => {
   return (
     <>
       <h4 className="text-center mt-3">Search</h4>
-      <Row className="text-center mt-3 gx-0 gx-md-2 px-0">
-        <Col className="col-12 col-lg-6 text-center">
+      <Row className="text-center mt-3 gx-0 gx-md-2 px-0 row justify-content-evenly">
+        <Col className="col-12 col-lg-4 text-center">
           <Form onSubmit={(event) => event.preventDefault()} className="mb-3">
+            <FormLabel>Search Area</FormLabel>
             <Form.Control
               value={area}
               onChange={(event) => setArea(event.target.value)}
               type="text"
               className="mr-sm-2"
-              placeholder="Search Area"
             />
           </Form>
           <Form onSubmit={(event) => event.preventDefault()} className="mb-3">
+            <FormLabel>Search Price</FormLabel>
             <Form.Control
               value={price}
               onChange={(event) => setPrice(event.target.value)}
               type="text"
               className="mr-sm-2"
-              placeholder="Search price"
             />
           </Form>
         </Col>
-        <Col className="col-12 col-lg-6 text-center">
+        <Col className="col-12 col-lg-4 text-center">
           <Form onSubmit={(event) => event.preventDefault()} className="mb-3">
+            <FormLabel>Search Number of Bedrooms</FormLabel>
             <Form.Control
               value={bedrooms}
               onChange={(event) => setBedrooms(event.target.value)}
               type="text"
               className="mr-sm-2"
-              placeholder="Search Number of Bedrooms"
             />
           </Form>
           <Form.Group controlId="type_of_property">
+            <FormLabel>Type of Property</FormLabel>
             <Form.Control
               as="select"
               onChange={(event) => setType(event.target.value)}
               value={type}
               name="type_of_property"
-              placeholder="Search"
             >
-              <option>Type of Property...</option>
+              <option></option>
               <option value="detached_house">Detached House</option>
               <option value="terrace_house">Terrace House</option>
               <option value="apartment">Apartment</option>
