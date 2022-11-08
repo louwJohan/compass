@@ -30,7 +30,7 @@ const Profile = () => {
       {hasLoaded ? (
         <Row>
           <Col lg={6} md={6} sm={12} xs={12} className="p-4">
-            <Card className="mt-5">
+            <Card className={`mt-5`}>
               <Card.Img variant="top" src={profileData.profile_image} />
               <Card.Body>
                 <Card.Title>{profileData.profile_name}</Card.Title>
