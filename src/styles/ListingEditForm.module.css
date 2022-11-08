@@ -1,5 +1,5 @@
 .Upload {
-    width: 300px;
-    height: 30vh;
+    height: 11rem;
+    object-fit: cover;
 }
 

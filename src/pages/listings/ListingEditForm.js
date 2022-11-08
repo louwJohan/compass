@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import { Container, Button } from "react-bootstrap";
+import { Container, Button, Row, Col } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useHistory } from "react-router";
@@ -293,176 +293,180 @@ const ListingEditForm = () => {
               {message}
             </Alert>
           ))}
-
-          <Form.Group className="text-center">
-            <figure>
-              <Image className={styles.Upload} src={image_one} rounded />
-            </figure>
-            <Form.Label
-              className="d-flex justify-content-center"
-              htmlFor="image_one"
-            ></Form.Label>
-            <Form.File
-              id="image_one"
-              accept="image/*"
-              onChange={handleChangeImage}
-              name="image_one"
-              ref={imageOneInput}
-            />
-          </Form.Group>
-          {errors?.image_one?.map((message, idx) => (
-            <Alert key={idx} variant="dark">
-              {message}
-            </Alert>
-          ))}
-          <Form.Group className="text-center">
-            <figure>
-              <Image className={styles.Upload} src={image_two} rounded />
-            </figure>
-            <Form.Label
-              className="d-flex justify-content-center"
-              htmlFor="image_two"
-            ></Form.Label>
-            <Form.File
-              id="image_two"
-              accept="image/*"
-              onChange={handleChangeImage}
-              name="image_two"
-              ref={imageTwoInput}
-            />
-          </Form.Group>
-          {errors?.image_two?.map((message, idx) => (
-            <Alert key={idx} variant="dark">
-              {message}
-            </Alert>
-          ))}
-          <Form.Group className="text-center">
-            <figure>
-              <Image className={styles.Upload} src={image_three} rounded />
-            </figure>
-            <Form.Label
-              className="d-flex justify-content-center"
-              htmlFor="image_three"
-            ></Form.Label>
-            <Form.File
-              id="image_three"
-              accept="image/*"
-              onChange={handleChangeImage}
-              name="image_three"
-              ref={imageThreeInput}
-            />
-          </Form.Group>
-          {errors?.image_three?.map((message, idx) => (
-            <Alert key={idx} variant="dark">
-              {message}
-            </Alert>
-          ))}
-          <Form.Group className="text-center">
-            <figure>
-              <Image className={styles.Upload} src={image_four} rounded />
-            </figure>
-            <Form.Label
-              className="d-flex justify-content-center"
-              htmlFor="image_four"
-            ></Form.Label>
-            <Form.File
-              id="image_four"
-              accept="image/*"
-              onChange={handleChangeImage}
-              name="image_four"
-              ref={imageFourInput}
-            />
-          </Form.Group>
-          {errors?.image_four?.map((message, idx) => (
-            <Alert key={idx} variant="dark">
-              {message}
-            </Alert>
-          ))}
-          <Form.Group className="text-center">
-            <figure>
-              <Image className={styles.Upload} src={image_five} rounded />
-            </figure>
-            <Form.Label
-              className="d-flex justify-content-center"
-              htmlFor="image_five"
-            ></Form.Label>
-            <Form.File
-              id="image_five"
-              accept="image/*"
-              onChange={handleChangeImage}
-              name="image_five"
-              ref={imageFiveInput}
-            />
-          </Form.Group>
-          {errors?.image_five?.map((message, idx) => (
-            <Alert key={idx} variant="dark">
-              {message}
-            </Alert>
-          ))}
-          <Form.Group className="text-center">
-            <figure>
-              <Image className={styles.Upload} src={image_six} rounded />
-            </figure>
-            <Form.Label
-              className="d-flex justify-content-center"
-              htmlFor="image_six"
-            ></Form.Label>
-            <Form.File
-              id="image_six"
-              accept="image/*"
-              onChange={handleChangeImage}
-              name="image_six"
-              ref={imageSixInput}
-            />
-          </Form.Group>
-          {errors?.image_six?.map((message, idx) => (
-            <Alert key={idx} variant="dark">
-              {message}
-            </Alert>
-          ))}
-          <Form.Group className="text-center">
-            <figure>
-              <Image className={styles.Upload} src={image_seven} rounded />
-            </figure>
-            <Form.Label
-              className="d-flex justify-content-center"
-              htmlFor="image_seven"
-            ></Form.Label>
-            <Form.File
-              id="image_seven"
-              accept="image/*"
-              onChange={handleChangeImage}
-              name="image_seven"
-              ref={imageSevenInput}
-            />
-          </Form.Group>
-          {errors?.image_seven?.map((message, idx) => (
-            <Alert key={idx} variant="dark">
-              {message}
-            </Alert>
-          ))}
-          <Form.Group className="text-center">
-            <figure>
-              <Image className={styles.Upload} src={image_eight} rounded />
-            </figure>
-            <Form.Label
-              className="d-flex justify-content-center"
-              htmlFor="image_eight"
-            ></Form.Label>
-            <Form.File
-              id="image_eight"
-              accept="image/*"
-              onChange={handleChangeImage}
-              name="image_eight"
-              ref={imageEightInput}
-            />
-          </Form.Group>
-          {errors?.image_eight?.map((message, idx) => (
-            <Alert key={idx} variant="dark">
-              {message}
-            </Alert>
-          ))}
-
+          <Row>
+            <Col>
+              <Form.Group className="text-center">
+                <figure>
+                  <Image className={styles.Upload} src={image_one} rounded />
+                </figure>
+                <Form.Label
+                  className="d-flex justify-content-center"
+                  htmlFor="image_one"
+                ></Form.Label>
+                <Form.File
+                  id="image_one"
+                  accept="image/*"
+                  onChange={handleChangeImage}
+                  name="image_one"
+                  ref={imageOneInput}
+                />
+              </Form.Group>
+              {errors?.image_one?.map((message, idx) => (
+                <Alert key={idx} variant="dark">
+                  {message}
+                </Alert>
+              ))}
+              <Form.Group className="text-center">
+                <figure>
+                  <Image className={styles.Upload} src={image_two} rounded />
+                </figure>
+                <Form.Label
+                  className="d-flex justify-content-center"
+                  htmlFor="image_two"
+                ></Form.Label>
+                <Form.File
+                  id="image_two"
+                  accept="image/*"
+                  onChange={handleChangeImage}
+                  name="image_two"
+                  ref={imageTwoInput}
+                />
+              </Form.Group>
+              {errors?.image_two?.map((message, idx) => (
+                <Alert key={idx} variant="dark">
+                  {message}
+                </Alert>
+              ))}
+              <Form.Group className="text-center">
+                <figure>
+                  <Image className={styles.Upload} src={image_three} rounded />
+                </figure>
+                <Form.Label
+                  className="d-flex justify-content-center"
+                  htmlFor="image_three"
+                ></Form.Label>
+                <Form.File
+                  id="image_three"
+                  accept="image/*"
+                  onChange={handleChangeImage}
+                  name="image_three"
+                  ref={imageThreeInput}
+                />
+              </Form.Group>
+              {errors?.image_three?.map((message, idx) => (
+                <Alert key={idx} variant="dark">
+                  {message}
+                </Alert>
+              ))}
+              <Form.Group className="text-center">
+                <figure>
+                  <Image className={styles.Upload} src={image_four} rounded />
+                </figure>
+                <Form.Label
+                  className="d-flex justify-content-center"
+                  htmlFor="image_four"
+                ></Form.Label>
+                <Form.File
+                  id="image_four"
+                  accept="image/*"
+                  onChange={handleChangeImage}
+                  name="image_four"
+                  ref={imageFourInput}
+                />
+              </Form.Group>
+              {errors?.image_four?.map((message, idx) => (
+                <Alert key={idx} variant="dark">
+                  {message}
+                </Alert>
+              ))}
+            </Col>
+            <Col>
+              <Form.Group className="text-center">
+                <figure>
+                  <Image className={styles.Upload} src={image_five} rounded />
+                </figure>
+                <Form.Label
+                  className="d-flex justify-content-center"
+                  htmlFor="image_five"
+                ></Form.Label>
+                <Form.File
+                  id="image_five"
+                  accept="image/*"
+                  onChange={handleChangeImage}
+                  name="image_five"
+                  ref={imageFiveInput}
+                />
+              </Form.Group>
+              {errors?.image_five?.map((message, idx) => (
+                <Alert key={idx} variant="dark">
+                  {message}
+                </Alert>
+              ))}
+              <Form.Group className="text-center">
+                <figure>
+                  <Image className={styles.Upload} src={image_six} rounded />
+                </figure>
+                <Form.Label
+                  className="d-flex justify-content-center"
+                  htmlFor="image_six"
+                ></Form.Label>
+                <Form.File
+                  id="image_six"
+                  accept="image/*"
+                  onChange={handleChangeImage}
+                  name="image_six"
+                  ref={imageSixInput}
+                />
+              </Form.Group>
+              {errors?.image_six?.map((message, idx) => (
+                <Alert key={idx} variant="dark">
+                  {message}
+                </Alert>
+              ))}
+              <Form.Group className="text-center">
+                <figure>
+                  <Image className={styles.Upload} src={image_seven} rounded />
+                </figure>
+                <Form.Label
+                  className="d-flex justify-content-center"
+                  htmlFor="image_seven"
+                ></Form.Label>
+                <Form.File
+                  id="image_seven"
+                  accept="image/*"
+                  onChange={handleChangeImage}
+                  name="image_seven"
+                  ref={imageSevenInput}
+                />
+              </Form.Group>
+              {errors?.image_seven?.map((message, idx) => (
+                <Alert key={idx} variant="dark">
+                  {message}
+                </Alert>
+              ))}
+              <Form.Group className="text-center">
+                <figure>
+                  <Image className={styles.Upload} src={image_eight} rounded />
+                </figure>
+                <Form.Label
+                  className="d-flex justify-content-center"
+                  htmlFor="image_eight"
+                ></Form.Label>
+                <Form.File
+                  id="image_eight"
+                  accept="image/*"
+                  onChange={handleChangeImage}
+                  name="image_eight"
+                  ref={imageEightInput}
+                />
+              </Form.Group>
+              {errors?.image_eight?.map((message, idx) => (
+                <Alert key={idx} variant="dark">
+                  {message}
+                </Alert>
+              ))}
+            </Col>
+          </Row>
           <Button variant="primary" type="submit" className="mt-5">
             Submit
           </Button>
