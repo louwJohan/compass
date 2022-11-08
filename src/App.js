@@ -17,6 +17,7 @@ import EditProfile from "./pages/profile/EditProfile";
 function App() {
   const currentUser = useCurrentUser();
   const pk = currentUser?.profile_id || "";
+  const owner = currentUser?.pk;
   return (
     <div className={styles.App}>
       <NavBar />
@@ -71,7 +72,7 @@ function App() {
             render={() => (
               <ListingListDisplay
                 message="You have no listings at the moment."
-                filter={`owner=${pk}`}
+                filter={`owner=${owner}`}
               />
             )}
           />
