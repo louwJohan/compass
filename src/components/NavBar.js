@@ -47,7 +47,6 @@ const NavBar = () => {
     </>
   );
 
-  console.log(currentUser);
   const LoggedOut = (
     <>
       <Nav>

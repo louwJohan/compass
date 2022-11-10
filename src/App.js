@@ -13,13 +13,23 @@ import { useCurrentUser } from "./context/CurrentUserContext";
 import ListingEditForm from "./pages/listings/ListingEditForm";
 import Profile from "./pages/profile/Profile";
 import EditProfile from "./pages/profile/EditProfile";
+// import { useEffect, useState } from "react";
+// import ProtectedRoute from "./components/ProtectedRoute.js";
 
 function App() {
   const currentUser = useCurrentUser();
-
+  // const [auth, setAuth] = useState(false);
   const pk = currentUser?.profile_id || "";
   const owner = currentUser?.pk;
 
+  // useEffect(() => {
+  //   const checkAuth = () => {
+  //     if (currentUser?.pk != null) {
+  //       setAuth(true);
+  //     }
+  //   };
+  //   checkAuth();
+  // }, [currentUser]);
   return (
     <div className={styles.App}>
       <NavBar />
