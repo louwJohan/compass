@@ -26,30 +26,34 @@ const Messages = () => {
   const message_list = [];
 
   for (let item in messageData) {
-    if (messageData[item].listing_owner === currentUser.profile_id) {
+    if (messageData[item].listing_owner === currentUser.pk) {
       message_list.push(messageData[item]);
     }
   }
 
   return (
     <>
-      <h1>Call Back</h1>
+      <h4>Messages</h4>
       {hasLoaded ? (
-        message_list.map((message) => (
-          <Container key={message.id}>
-            <hr></hr>
-            <h4>Re:{message.title}</h4>
-            <hr></hr>
-            <p>Content:{message.content}</p>
-            <p>Name:{message.name}</p>
-            <p> Surname: {message.surname}</p>
-            <p>Tel:{message.phone_number}</p>
-            <p>Email: {message.email}</p>
-            <NavLink to={`/listing/${message.listing}`}>
-              Listing Details
-            </NavLink>
-          </Container>
-        ))
+        message_list.length ? (
+          message_list.map((message) => (
+            <Container key={message.id}>
+              <hr></hr>
+              <h4>Re:{message.title}</h4>
+              <hr></hr>
+              <p>Content:{message.content}</p>
+              <p>Name:{message.name}</p>
+              <p> Surname: {message.surname}</p>
+              <p>Tel:{message.phone_number}</p>
+              <p>Email: {message.email}</p>
+              <NavLink to={`/listing/${message.listing}`}>
+                Listing Details
+              </NavLink>
+            </Container>
+          ))
+        ) : (
+          <p>You have no messages.</p>
+        )
       ) : (
         <Container>
           <Asset spinner />

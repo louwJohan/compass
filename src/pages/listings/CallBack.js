@@ -8,7 +8,6 @@ import {
 } from "react-router-dom/cjs/react-router-dom.min";
 
 const CallBack = (props) => {
-  const is_owner = props;
   const [data, setData] = useState({
     name: "",
     surname: "",

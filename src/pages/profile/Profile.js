@@ -1,5 +1,12 @@
 import React, { useEffect } from "react";
-import { Card, ListGroup, ListGroupItem, Row, Col } from "react-bootstrap";
+import {
+  Card,
+  ListGroup,
+  ListGroupItem,
+  Row,
+  Col,
+  Button,
+} from "react-bootstrap";
 import { useState } from "react";
 import { useCurrentUser } from "../../context/CurrentUserContext";
 import { axiosReq } from "../../api/axiosDefaults";
@@ -30,7 +37,7 @@ const Profile = () => {
       {hasLoaded ? (
         <Row>
           <Col lg={6} md={6} sm={12} xs={12} className="p-4">
-            <Card className={`mt-5`}>
+            <Card className={`mt-5`} style={{ width: "18rem" }}>
               <Card.Img variant="top" src={profileData.profile_image} />
               <Card.Body>
                 <Card.Title>{profileData.profile_name}</Card.Title>
@@ -49,8 +56,12 @@ const Profile = () => {
                 </ListGroupItem>
               </ListGroup>
               <Card.Body>
-                <NavLink to={`/mylistings`}>My Listings</NavLink>
-                <NavLink to={"/edit_profile"}>Edit Profile</NavLink>
+                <NavLink to={`/mylistings`}>
+                  <Button>My Listings</Button>
+                </NavLink>
+                <NavLink to={"/edit_profile"}>
+                  <Button>Edit Profile</Button>
+                </NavLink>
               </Card.Body>
             </Card>
           </Col>

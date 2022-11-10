@@ -3,6 +3,7 @@ import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import { NavLink } from "react-router-dom";
 import styles from "../../styles/ListingCard.module.css";
+import { Button } from "react-bootstrap";
 
 const ListingCard = ({ title, price, area, bedrooms, image_one, id }) => {
   return (
@@ -21,7 +22,9 @@ const ListingCard = ({ title, price, area, bedrooms, image_one, id }) => {
           <ListGroup.Item>Price: {price}</ListGroup.Item>
         </ListGroup>
         <Card.Body>
-          <NavLink to={`/listing/${id}`}>Listing Details</NavLink>
+          <NavLink to={`/listing/${id}`}>
+            <Button>Listing Details</Button>
+          </NavLink>
         </Card.Body>
       </Card>
     </div>
