@@ -16,8 +16,10 @@ import EditProfile from "./pages/profile/EditProfile";
 
 function App() {
   const currentUser = useCurrentUser();
+
   const pk = currentUser?.profile_id || "";
   const owner = currentUser?.pk;
+
   return (
     <div className={styles.App}>
       <NavBar />
@@ -36,6 +38,7 @@ function App() {
             )}
           />
           <Route exact path="/sell" render={() => <Sell />} />
+
           <Route
             exact
             path="/rent"

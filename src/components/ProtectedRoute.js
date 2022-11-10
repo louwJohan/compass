@@ -1,18 +1,12 @@
 import React from "react";
-import { Route, Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
-const ProtectedRoute = (currentUser, component) => {
-  return (
-    <Route
-      render={(props) => {
-        if (currentUser) {
-          return component;
-        } else {
-          return <Redirect to={"/signin"} />;
-        }
-      }}
-    />
-  );
+const ProtectedRoute = ({ isAuthenticated, children }) => {
+  const history = useHistory();
+  if (!isAuthenticated) {
+    return history.push("/signin");
+  }
+  return children;
 };
 
 export default ProtectedRoute;
