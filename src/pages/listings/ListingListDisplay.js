@@ -26,7 +26,7 @@ const ListingListDisplay = ({ message, filter = "" }) => {
     const fetchListings = async () => {
       try {
         const { data } = await axiosReq.get(
-          `/listings/?${filter}&area=${area}&price=${price}&bedrooms=${bedrooms}&type_of_property=${type}`
+          `/listings/?${filter}&area__icontains=${area}&price__icontains=${price}&bedrooms=${bedrooms}&type_of_property=${type}`
         );
         setListings(data);
         setpageCount(Math.ceil(data.count / 10));
