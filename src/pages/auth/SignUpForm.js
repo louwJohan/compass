@@ -28,14 +28,17 @@ const SignUpForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post("dj-rest-auth/registration/", signUpData);
+      await axios.post("dj-rest-auth/registration/", {
+        username: username.toLocaleLowerCase(),
+        password1: password1,
+        password2: password2,
+      });
       alert(
         "Thank you for joining! You can now add listings and request callbacks and save you favorite properties!"
       );
       history.push("/signin");
     } catch (err) {
       setErrors(err.response?.data);
-      console.log(err.message);
     }
   };
   return (
@@ -57,7 +60,7 @@ const SignUpForm = () => {
               <Form.Text className="text-muted"></Form.Text>
             </Form.Group>
             {errors.username?.map((message, idx) => (
-              <Alert variant="dark" key={idx}>
+              <Alert key={idx} variant="dark">
                 {message}
               </Alert>
             ))}
@@ -98,7 +101,7 @@ const SignUpForm = () => {
               Submit
             </Button>
             {errors.non_field_errors?.map((message, idx) => (
-              <Alert variant="dark" key={idx} className="mt-3">
+              <Alert key={idx} variant="warning" className="mt-3">
                 {message}
               </Alert>
             ))}

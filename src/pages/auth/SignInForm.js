@@ -30,12 +30,16 @@ const SignInForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const { data } = await axios.post("/dj-rest-auth/login/", signInData);
+      const { data } = await axios.post("/dj-rest-auth/login/", {
+        username: username.toLowerCase(),
+        password: password,
+      });
       setCurrentUser(data.user);
       alert(`Welkom back ${username}`);
       history.push("/");
     } catch (err) {
       setErrors(err.response?.data);
+      console.log(err.response?.data);
     }
   };
 
@@ -81,6 +85,11 @@ const SignInForm = () => {
             <Button variant="dark" type="submit">
               Submit
             </Button>
+            {errors.non_field_errors?.map((message, idx) => (
+              <Alert key={idx} variant="dark" className="mt-3">
+                {message}
+              </Alert>
+            ))}
           </Form>
         </Col>
       </Row>
