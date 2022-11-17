@@ -13,6 +13,7 @@ import { useCurrentUser } from "./context/CurrentUserContext";
 import ListingEditForm from "./pages/listings/ListingEditForm";
 import Profile from "./pages/profile/Profile";
 import EditProfile from "./pages/profile/EditProfile";
+import Footer from "./components/Footer";
 // import { useEffect, useState } from "react";
 // import ProtectedRoute from "./components/ProtectedRoute.js";
 
@@ -93,7 +94,9 @@ function App() {
         </Switch>
       </Container>
       <hr></hr>
-      <Container></Container>
+      <Container>
+        <Footer />
+      </Container>
     </div>
   );
 }
