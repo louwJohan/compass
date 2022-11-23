@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import { axiosReq } from "../../api/axiosDefaults";
 import Asset from "../../components/Asset";
 import { useCurrentUser } from "../../context/CurrentUserContext";
@@ -47,7 +47,7 @@ const Messages = () => {
               <p>Tel:{message.phone_number}</p>
               <p>Email: {message.email}</p>
               <NavLink to={`/listing/${message.listing}`}>
-                Listing Details
+                <Button>Listing Details</Button>
               </NavLink>
             </Container>
           ))

@@ -1,9 +1,9 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import ListingListDisplay from "../../pages/listings/ListingListDisplay.js";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import { CurrentUserProvider } from "../../contexts/CurrentUserContext";
+import { BrowserRouter as Router } from "react-router-dom";
+import { CurrentUserProvider } from "../../context/CurrentUserContext";
 
-test("render buy property listings", () => {
+test("render buy property listings", async () => {
   render(
     <Router>
       <CurrentUserProvider>
@@ -14,4 +14,9 @@ test("render buy property listings", () => {
       </CurrentUserProvider>
     </Router>
   );
+
+  const listingDetails = await screen.findByRole("link", {
+    name: "Listing Details",
+  });
+  expect(listingDetails).toBeInTheDocument();
 });
