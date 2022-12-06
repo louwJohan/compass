@@ -7,8 +7,21 @@ const ProfileDataContext = createContext();
 export const useProfileData = () => useContext(ProfileDataContext);
 
 export const ProfileDataProvider = ({ children }) => {
+  const currentUser = useCurrentUser();
+  const [profileDataNew, setProfileData] = useState();
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const { data } = await axiosReq(`/profiles/${currentUser.profile_id}`);
+        setProfileData(data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchProfile();
+  }, [currentUser, profileDataNew]);
   return (
-    <ProfileDataContext.Provider value={{ item: 1 }}>
+    <ProfileDataContext.Provider value={{ profileDataNew }}>
       {children}
     </ProfileDataContext.Provider>
   );

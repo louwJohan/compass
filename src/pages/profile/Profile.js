@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import {
   Card,
   ListGroup,
@@ -16,11 +16,11 @@ import Messages from "./Messages";
 import { useProfileData } from "../../context/ProfileDataContext";
 
 const Profile = () => {
-  const { item } = useProfileData();
+  const { profileDataNew } = useProfileData();
   const currentUser = useCurrentUser();
   const [profileData, setProfileData] = useState();
   const [hasLoaded, setHasLoaded] = useState(false);
-  console.log(item);
+  console.log(profileDataNew);
   useEffect(() => {
     const fetchProfile = async () => {
       try {

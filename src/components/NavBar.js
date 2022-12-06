@@ -12,11 +12,13 @@ import axios from "axios";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 import Avatar from "../components/Avatar.js";
 import compass from "../assets/compass.png";
+import { useProfileData } from "../context/ProfileDataContext";
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
   const { expanded, setExpanded, ref } = useClickOutsideToggle();
+  const { profileDataNew } = useProfileData();
 
   const handleSignOut = async () => {
     try {
@@ -41,7 +43,11 @@ const NavBar = () => {
           Sign out
         </NavLink>
         <NavLink to="/profile" className="ml-auto">
-          <Avatar src={currentUser?.profile_image} text="Profile" height={40} />
+          <Avatar
+            src={profileDataNew?.profile_image}
+            text="Profile"
+            height={40}
+          />
         </NavLink>
       </Nav>
     </>
