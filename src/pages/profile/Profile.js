@@ -20,7 +20,7 @@ const Profile = () => {
   const currentUser = useCurrentUser();
   const [profileData, setProfileData] = useState();
   const [hasLoaded, setHasLoaded] = useState(false);
-  console.log(profileDataNew);
+  console.log(currentUser);
   useEffect(() => {
     const fetchProfile = async () => {
       try {
