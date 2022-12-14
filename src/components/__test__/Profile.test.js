@@ -1,16 +1,17 @@
 import { render, screen } from "@testing-library/react";
 import Profile from "../../pages/profile/Profile";
-// import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import { CurrentUserProvider } from "../../context/CurrentUserContext";
 
 test("profile be displayed for logged in user", async () => {
   render(
-    <CurrentUserProvider>
-      <Profile />
-    </CurrentUserProvider>
+    <Router>
+      <CurrentUserProvider>
+        <Profile />
+      </CurrentUserProvider>
+    </Router>
   );
-  const myListings = await screen.findAllByRole("link", {
-    name: "My Listings",
-  });
-  expect(myListings).toBeInTheDocument();
+  const editProfile = await screen.findByText("Edit Profile");
+
+  expect(editProfile).toBeInTheDocument();
 });

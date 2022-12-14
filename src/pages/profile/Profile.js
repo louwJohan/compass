@@ -13,14 +13,11 @@ import { axiosReq } from "../../api/axiosDefaults";
 import Asset from "../../components/Asset";
 import { NavLink } from "react-router-dom";
 import Messages from "./Messages";
-import { useProfileData } from "../../context/ProfileDataContext";
 
 const Profile = () => {
-  const { profileDataNew } = useProfileData();
   const currentUser = useCurrentUser();
   const [profileData, setProfileData] = useState();
   const [hasLoaded, setHasLoaded] = useState(false);
-  console.log(currentUser);
   useEffect(() => {
     const fetchProfile = async () => {
       try {
