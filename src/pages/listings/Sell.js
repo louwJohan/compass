@@ -11,7 +11,7 @@ const Sell = () => {
   useLayoutEffect(() => {
     setTimeout(() => {
       setHasLoaded(true);
-    }, 2000);
+    }, 1000);
   }, []);
   return (
     <div>
