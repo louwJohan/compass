@@ -12,25 +12,27 @@ import { useCurrentUser } from "../../context/CurrentUserContext";
 import { axiosReq } from "../../api/axiosDefaults";
 import Asset from "../../components/Asset";
 import { NavLink } from "react-router-dom";
-import Messages from "./Messages";
+import MessageDetail from "./MessageDetail";
 
 const Profile = () => {
   const currentUser = useCurrentUser();
   const [profileData, setProfileData] = useState();
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [messageId, setMessageId] = useState();
+
   useEffect(() => {
     const fetchProfile = async () => {
       try {
         const { data } = await axiosReq(`/profiles/${currentUser.profile_id}`);
         setProfileData(data);
         setHasLoaded(true);
+        setMessageId(data.messages);
       } catch (err) {
         console.log(err);
       }
     };
     fetchProfile();
   }, [currentUser, hasLoaded]);
-
   return (
     <>
       {hasLoaded ? (
@@ -65,7 +67,16 @@ const Profile = () => {
             </Card>
           </Col>
           <Col lg={6} md={6} sm={12} xs={12} className="p-4">
-            <Messages currentUser />
+            <h4>Messages</h4>
+            {messageId?.length ? (
+              <>
+                {messageId.map((id) => (
+                  <MessageDetail singleId={id} key={id} />
+                ))}
+              </>
+            ) : (
+              <p>You have no messages.</p>
+            )}
           </Col>
         </Row>
       ) : (
