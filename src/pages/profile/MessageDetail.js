@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Button, Container } from "react-bootstrap";
 import { axiosReq } from "../../api/axiosDefaults";
-import { useCurrentUser } from "../../context/CurrentUserContext";
 import { NavLink } from "react-router-dom";
 import Asset from "../../components/Asset";
 import appStyles from "../../App.module.css";
 
 const MessageDetail = ({ singleId }) => {
-  const currentUser = useCurrentUser();
   const [messageData, setMessageData] = useState();
   const [hasLoaded, setHasLoaded] = useState(false);
 

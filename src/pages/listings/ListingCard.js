@@ -19,7 +19,7 @@ const ListingCard = ({ title, price, area, bedrooms, image_one, id }) => {
         <ListGroup className="list-group-flush">
           <ListGroup.Item>Area: {area}</ListGroup.Item>
           <ListGroup.Item>Bedrooms: {bedrooms}</ListGroup.Item>
-          <ListGroup.Item>Price: {price}</ListGroup.Item>
+          <ListGroup.Item>Offers in the region of: {price}</ListGroup.Item>
         </ListGroup>
         <Card.Body>
           <NavLink to={`/listing/${id}`}>

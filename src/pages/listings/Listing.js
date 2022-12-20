@@ -182,7 +182,7 @@ const Listing = (props) => {
           <hr></hr>
           <p>Area: {area}</p>
           <hr></hr>
-          <p>Price: £{price}</p>
+          <p>Offers in the region of: £{price}</p>
           <hr></hr>
           <p>{updated_at}</p>
           <hr></hr>
