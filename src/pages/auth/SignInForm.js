@@ -8,6 +8,7 @@ import styles from "../../styles/SignInForm.module.css";
 import { useHistory } from "react-router";
 import Alert from "react-bootstrap/Alert";
 import { useSetCurrentUser } from "../../context/CurrentUserContext";
+import { useAlert } from "react-alert";
 
 const SignInForm = () => {
   const setCurrentUser = useSetCurrentUser();
@@ -15,7 +16,7 @@ const SignInForm = () => {
     username: "",
     password: "",
   });
-
+  const alert = useAlert();
   const [errors, setErrors] = useState({});
   const { username, password } = signInData;
   const history = useHistory();
@@ -35,7 +36,7 @@ const SignInForm = () => {
         password: password,
       });
       setCurrentUser(data.user);
-      alert(`Welkom back ${username}`);
+      alert.show(`Welcome back ${username}`);
       history.push("/");
     } catch (err) {
       setErrors(err.response?.data);

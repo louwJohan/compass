@@ -9,8 +9,10 @@ import Upload from "../../assets/upload.png";
 import styles from "../../styles/ListingCreateForm.module.css";
 import appStyles from "../../App.module.css";
 import Asset from "../../components/Asset";
+import { useAlert } from "react-alert";
 
 const ListingCreateForm = () => {
+  const alert = useAlert();
   const [listingData, setListingData] = useState({
     title: "",
     description: "",
@@ -88,7 +90,7 @@ const ListingCreateForm = () => {
 
     try {
       const { data } = await axiosReq.post("/listings/", formData);
-      alert("Thank you! You will be redirected to you listing!");
+      alert.show("Thank you! You will be redirected to you listing!");
       history.push(`/listing/${data.id}`);
     } catch (err) {
       if (err.response?.status !== 401) {

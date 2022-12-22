@@ -14,8 +14,10 @@ import { axiosRes } from "../../api/axiosDefaults";
 import { useHistory } from "react-router-dom";
 import { EditDropdown } from "../../components/EditDropdown";
 import CallBack from "./CallBack";
+import { useAlert } from "react-alert";
 
 const Listing = (props) => {
+  const alert = useAlert();
   const {
     id,
     owner,
@@ -69,6 +71,7 @@ const Listing = (props) => {
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/listings/${id}`);
+      alert.show("Your Listing will be deleted");
       history.goBack();
     } catch (err) {
       console.log(err);

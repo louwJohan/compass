@@ -7,6 +7,7 @@ import styles from "../../styles/SignUpForm.module.css";
 import { useHistory } from "react-router";
 import axios from "axios";
 import Alert from "react-bootstrap/Alert";
+import { useAlert } from "react-alert";
 
 const SignUpForm = () => {
   const [signUpData, setSignUpData] = useState({
@@ -17,7 +18,7 @@ const SignUpForm = () => {
   const [errors, setErrors] = useState({});
   const { username, password1, password2 } = signUpData;
   const history = useHistory();
-
+  const alert = useAlert();
   const handleChange = (event) => {
     setSignUpData({
       ...signUpData,
@@ -33,7 +34,7 @@ const SignUpForm = () => {
         password1: password1,
         password2: password2,
       });
-      alert(
+      alert.show(
         "Thank you for joining! You can now add listings and request callbacks and save you favorite properties!"
       );
       history.push("/signin");

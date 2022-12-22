@@ -1,18 +1,29 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
+
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
 import { CurrentUserProvider } from "./context/CurrentUserContext";
 import { ProfileDataProvider } from "./context/ProfileDataContext";
+import { transitions, positions, Provider as AlertProvider } from "react-alert";
+import AlertTemplate from "react-alert-template-basic";
+import App from "./App";
 
-// const root = ReactDOM.createRoot(document.getElementById("root"));
+const options = {
+  position: positions.MIDDLE,
+  timeout: 5000,
+  offset: "30px",
+  transition: transitions.SCALE,
+};
+
 ReactDOM.render(
   <Router>
     <CurrentUserProvider>
       <ProfileDataProvider>
-        <App />
+        <AlertProvider template={AlertTemplate} {...options}>
+          <App />
+        </AlertProvider>
       </ProfileDataProvider>
     </CurrentUserProvider>
   </Router>,

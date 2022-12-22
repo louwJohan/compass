@@ -7,8 +7,10 @@ import Alert from "react-bootstrap/Alert";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import Image from "react-bootstrap/Image";
 import styles from "../../styles/ListingEditForm.module.css";
+import { useAlert } from "react-alert";
 
 const ListingEditForm = () => {
+  const alert = useAlert();
   const [listingData, setListingData] = useState({
     title: "",
     description: "",
@@ -162,10 +164,9 @@ const ListingEditForm = () => {
 
     try {
       const { data } = await axiosReq.put(`/listings/${id}`, formData);
-      alert("Thank you! You will be redirected to you listing!");
+      alert.show("Thank you! You will be redirected to you listing!");
       history.push(`/listing/${data.id}`);
     } catch (err) {
-      // console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }

@@ -13,17 +13,20 @@ import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 import Avatar from "../components/Avatar.js";
 import compass from "../assets/compass.png";
 import { useProfileData } from "../context/ProfileDataContext";
+import { useAlert } from "react-alert";
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
   const { expanded, setExpanded, ref } = useClickOutsideToggle();
   const { profileDataNew } = useProfileData();
+  const alert = useAlert();
 
   const handleSignOut = async () => {
     try {
       await axios.post("dj-rest-auth/logout/");
       setCurrentUser(null);
+      alert.show("Thank you for using Compass");
     } catch (err) {
       console.log(err);
     }

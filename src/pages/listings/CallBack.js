@@ -6,8 +6,10 @@ import {
   useHistory,
   useParams,
 } from "react-router-dom/cjs/react-router-dom.min";
+import { useAlert } from "react-alert";
 
 const CallBack = (props) => {
+  const alert = useAlert();
   const [data, setData] = useState({
     name: "",
     surname: "",
@@ -41,7 +43,7 @@ const CallBack = (props) => {
     try {
       await axiosReq.post("/messages/", formData);
       history.push("/buy");
-      alert("Thank you! Your message will be sent to the listing owner!");
+      alert.show("Thank you! Your message will be sent to the listing owner!");
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {

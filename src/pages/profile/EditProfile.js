@@ -6,7 +6,10 @@ import { useCurrentUser } from "../../context/CurrentUserContext";
 import Asset from "../../components/Asset";
 import { NavLink } from "react-router-dom";
 import styles from "../../styles/EditProfile.module.css";
+import { useAlert } from "react-alert";
+
 const EditProfile = () => {
+  const alert = useAlert();
   const [profileData, setProfileData] = useState({
     profile_name: "",
     profile_content: "",
@@ -65,6 +68,7 @@ const EditProfile = () => {
 
     try {
       await axiosReq.put(`/profiles/${currentUser.profile_id}`, formData);
+      alert.show("Your profile will be updated!");
       history.push("/profile");
     } catch (err) {
       if (err.response?.status !== 401) {
