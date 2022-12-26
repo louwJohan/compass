@@ -14,6 +14,7 @@ import ListingEditForm from "./pages/listings/ListingEditForm";
 import Profile from "./pages/profile/Profile";
 import EditProfile from "./pages/profile/EditProfile";
 import Footer from "./components/Footer";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -38,7 +39,15 @@ function App() {
               />
             )}
           />
-          <Route exact path="/sell" render={() => <Sell />} />
+          <Route
+            exact
+            path="/sell"
+            render={() => (
+              <ProtectedRoute>
+                <Sell />
+              </ProtectedRoute>
+            )}
+          />
 
           <Route
             exact
@@ -62,22 +71,44 @@ function App() {
           />
           <Route exact path="/signin" render={() => <SignInForm />} />
           <Route exact path="/signup" render={() => <SignUpForm />} />
-          <Route exact path="/profile" render={() => <Profile />} />
+          <Route
+            exact
+            path="/profile"
+            render={() => (
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            )}
+          />
           <Route exact path="/listing/:id" render={() => <ListingPage />} />
-          <Route exact path="/edit_profile" render={() => <EditProfile />} />
+          <Route
+            exact
+            path="/edit_profile"
+            render={() => (
+              <ProtectedRoute>
+                <EditProfile />
+              </ProtectedRoute>
+            )}
+          />
           <Route
             exact
             path="/listings/:id/edit"
-            render={() => <ListingEditForm />}
+            render={() => (
+              <ProtectedRoute>
+                <ListingEditForm />
+              </ProtectedRoute>
+            )}
           />
           <Route
             exact
             path="/mylistings"
             render={() => (
-              <ListingListDisplay
-                message="You have no listings at the moment."
-                filter={`owner=${owner}`}
-              />
+              <ProtectedRoute>
+                <ListingListDisplay
+                  message="You have no listings at the moment."
+                  filter={`owner=${owner}`}
+                />
+              </ProtectedRoute>
             )}
           />
           <Route render={() => <p>Page not found!</p>} />

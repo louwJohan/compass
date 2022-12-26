@@ -13,10 +13,8 @@ import { axiosReq } from "../../api/axiosDefaults";
 import Asset from "../../components/Asset";
 import { NavLink } from "react-router-dom";
 import MessageDetail from "./MessageDetail";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const Profile = () => {
-  const history = useHistory();
   const currentUser = useCurrentUser();
   const [profileData, setProfileData] = useState();
   const [hasLoaded, setHasLoaded] = useState(false);

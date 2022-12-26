@@ -9,6 +9,7 @@ export const useProfileData = () => useContext(ProfileDataContext);
 
 export const ProfileDataProvider = ({ children }) => {
   const currentUser = useCurrentUser();
+  const [isAuth, setIsAuth] = useState(false);
   const [profileDataNew, setProfileData] = useState();
   const url = useParams();
   useEffect(() => {
@@ -16,6 +17,7 @@ export const ProfileDataProvider = ({ children }) => {
       try {
         const { data } = await axiosReq(`/profiles/${currentUser.profile_id}`);
         setProfileData(data);
+        setIsAuth(true);
       } catch (err) {
         console.log(err);
       }
@@ -23,7 +25,7 @@ export const ProfileDataProvider = ({ children }) => {
     fetchProfile();
   }, [currentUser, url]);
   return (
-    <ProfileDataContext.Provider value={{ profileDataNew }}>
+    <ProfileDataContext.Provider value={{ profileDataNew, isAuth }}>
       {children}
     </ProfileDataContext.Provider>
   );
