@@ -31,7 +31,6 @@ const EditProfile = () => {
           `/profiles/${currentUser.profile_id}`
         );
         setProfileData(data);
-        hasLoaded(true);
       } catch (err) {
         console.log(err);
       }
