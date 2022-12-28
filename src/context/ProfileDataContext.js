@@ -7,11 +7,14 @@ const ProfileDataContext = createContext();
 
 export const useProfileData = () => useContext(ProfileDataContext);
 
+// Context to get profile of current user
 export const ProfileDataProvider = ({ children }) => {
   const currentUser = useCurrentUser();
   const [isAuth, setIsAuth] = useState(false);
   const [profileDataNew, setProfileData] = useState();
   const url = useParams();
+
+  //Async function to make api call to get profile data
   useEffect(() => {
     const fetchProfile = async () => {
       try {

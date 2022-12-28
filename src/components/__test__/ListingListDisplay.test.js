@@ -4,6 +4,9 @@ import ListingListDisplay from "../../pages/listings/ListingListDisplay";
 import { CurrentUserProvider } from "../../context/CurrentUserContext";
 import { ProfileDataProvider } from "../../context/ProfileDataContext";
 
+/*
+Test to render the listings list component
+ */
 test("render Listing sell page", async () => {
   render(
     <Router>

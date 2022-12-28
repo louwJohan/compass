@@ -15,6 +15,10 @@ import compass from "../assets/compass.png";
 import { useProfileData } from "../context/ProfileDataContext";
 import { useAlert } from "react-alert";
 
+/*
+ Renders navbar for logged in user and users that is not
+ logged in 
+ */
 const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
@@ -22,6 +26,7 @@ const NavBar = () => {
   const { profileDataNew } = useProfileData();
   const alert = useAlert();
 
+  // Function to log user out
   const handleSignOut = async () => {
     try {
       await axios.post("dj-rest-auth/logout/");

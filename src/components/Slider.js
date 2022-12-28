@@ -3,6 +3,7 @@ import Carousel from "react-bootstrap/Carousel";
 import styles from "../styles/Slider.module.css";
 import { Link } from "react-router-dom";
 
+// Carousel component for home page
 const Slider = () => {
   return (
     <div>

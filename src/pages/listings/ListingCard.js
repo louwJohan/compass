@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import styles from "../../styles/ListingCard.module.css";
 import { Button } from "react-bootstrap";
 
+// Renders a card component with listing information
 const ListingCard = ({ title, price, area, bedrooms, image_one, id }) => {
   return (
     <div className="mx-auto p-3">

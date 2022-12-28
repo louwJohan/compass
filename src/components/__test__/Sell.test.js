@@ -3,6 +3,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import Sell from "../../pages/listings/Sell";
 import { CurrentUserProvider } from "../../context/CurrentUserContext";
 
+// Test to render the listing create form
 test("render listing create form", async () => {
   render(
     <Router>

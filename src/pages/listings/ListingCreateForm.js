@@ -11,6 +11,7 @@ import appStyles from "../../App.module.css";
 import Asset from "../../components/Asset";
 import { useAlert } from "react-alert";
 
+// Renders the listing create page with a from
 const ListingCreateForm = () => {
   const alert = useAlert();
   const [listingData, setListingData] = useState({
@@ -53,6 +54,7 @@ const ListingCreateForm = () => {
 
   const history = useHistory();
 
+  // Handles change in the form
   const handleChange = (event) => {
     setListingData({
       ...listingData,
@@ -60,6 +62,7 @@ const ListingCreateForm = () => {
     });
   };
 
+  // handles the image change on the form
   const handleChangeImage = async (event) => {
     setListingData({
       ...listingData,
@@ -67,6 +70,7 @@ const ListingCreateForm = () => {
     });
   };
 
+  // Function to submit form data
   const handleSubmit = async (event) => {
     setHasLoaded(false);
     event.preventDefault();

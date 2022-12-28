@@ -8,6 +8,7 @@ import { NavLink } from "react-router-dom";
 import styles from "../../styles/EditProfile.module.css";
 import { useAlert } from "react-alert";
 
+// Renders the edit profile page
 const EditProfile = () => {
   const alert = useAlert();
   const [profileData, setProfileData] = useState({
@@ -23,6 +24,7 @@ const EditProfile = () => {
   const [hasLoaded, setHasLoaded] = useState(false);
 
   useEffect(() => {
+    // Function to fetch profile data
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get(
@@ -39,6 +41,7 @@ const EditProfile = () => {
     setHasLoaded(true);
   }, [hasLoaded, currentUser]);
 
+  // Handles change on form
   const handleChange = (event) => {
     setProfileData({
       ...profileData,
@@ -46,6 +49,7 @@ const EditProfile = () => {
     });
   };
 
+  // Handles image change on form
   const handleChangeImage = (event) => {
     if (event.target.files.length) {
       setProfileData({
@@ -55,6 +59,7 @@ const EditProfile = () => {
     }
   };
 
+  // Function to submit form data
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();

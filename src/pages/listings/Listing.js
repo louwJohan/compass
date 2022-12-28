@@ -16,6 +16,7 @@ import { EditDropdown } from "../../components/EditDropdown";
 import CallBack from "./CallBack";
 import { useAlert } from "react-alert";
 
+// Renders a listing page with data fro a single listing
 const Listing = (props) => {
   const alert = useAlert();
   const {
@@ -44,6 +45,8 @@ const Listing = (props) => {
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
   const history = useHistory();
+
+  // Function to save a listing for the user
   const handleSave = async () => {
     try {
       const { data } = await axiosRes.post("/saved/", { listing: id });
@@ -64,10 +67,12 @@ const Listing = (props) => {
     }
   };
 
+  // Function to redirect to listing edit page
   const handleEdit = () => {
     history.push(`/listings/${id}/edit`);
   };
 
+  // Function to delete a listing of a user
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/listings/${id}`);
@@ -78,6 +83,7 @@ const Listing = (props) => {
     }
   };
 
+  // Function to remove a saved listing
   const handleUnSave = async () => {
     try {
       await axiosRes.delete(`/saved/${saved_id}`);

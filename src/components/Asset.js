@@ -2,6 +2,7 @@ import React from "react";
 import { Spinner } from "react-bootstrap";
 import styles from "../styles/Asset.module.css";
 
+// Returns a spinner component
 const Asset = ({ spinner, src, message, height = 120 }) => {
   return (
     <div className={`${styles.Asset} p-4`}>

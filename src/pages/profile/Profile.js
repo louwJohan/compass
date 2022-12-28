@@ -14,6 +14,7 @@ import Asset from "../../components/Asset";
 import { NavLink } from "react-router-dom";
 import MessageDetail from "./MessageDetail";
 
+//Renders profile page
 const Profile = () => {
   const currentUser = useCurrentUser();
   const [profileData, setProfileData] = useState();
@@ -21,6 +22,7 @@ const Profile = () => {
   const [messageId, setMessageId] = useState();
 
   useEffect(() => {
+    //Function to fetch profile data
     const fetchProfile = async () => {
       try {
         const { data } = await axiosReq(`/profiles/${currentUser.profile_id}`);

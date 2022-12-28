@@ -12,6 +12,7 @@ import ListingCard from "./ListingCard";
 import { CardGroup, FormLabel } from "react-bootstrap";
 import ReactPaginate from "react-paginate";
 
+// Renders a list of listing cards
 const ListingListDisplay = ({ message, filter = "" }) => {
   const [listings, setListings] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -22,6 +23,7 @@ const ListingListDisplay = ({ message, filter = "" }) => {
   const [type, setType] = useState("");
   const [pageCount, setpageCount] = useState(0);
 
+  // Function to fetch listings data
   useEffect(() => {
     const fetchListings = async () => {
       try {
@@ -44,6 +46,7 @@ const ListingListDisplay = ({ message, filter = "" }) => {
     };
   }, [filter, area, pathname, bedrooms, price, type]);
 
+  // Function to handle page click for pagination
   const handlePageClick = async (data) => {
     let currentPage = data.selected + 1;
     try {

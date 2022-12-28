@@ -10,6 +10,7 @@ import Alert from "react-bootstrap/Alert";
 import { useSetCurrentUser } from "../../context/CurrentUserContext";
 import { useAlert } from "react-alert";
 
+// Renders sign in page
 const SignInForm = () => {
   const setCurrentUser = useSetCurrentUser();
   const [signInData, setSignInData] = useState({
@@ -21,6 +22,7 @@ const SignInForm = () => {
   const { username, password } = signInData;
   const history = useHistory();
 
+  // Handles change in forms
   const handleChange = (event) => {
     setSignInData({
       ...signInData,
@@ -28,6 +30,7 @@ const SignInForm = () => {
     });
   };
 
+  // Function to send data when form is submitted
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {

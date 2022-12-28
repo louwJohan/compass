@@ -2,6 +2,7 @@ import { rest } from "msw";
 
 const baseURL = "https://compass-drf.herokuapp.com/";
 
+// Mock api calls for tests
 export const handlers = [
   rest.get(`${baseURL}dj-rest-auth/user/`, (req, res, ctx) => {
     return res(

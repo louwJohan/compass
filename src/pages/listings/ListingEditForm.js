@@ -9,6 +9,7 @@ import Image from "react-bootstrap/Image";
 import styles from "../../styles/ListingEditForm.module.css";
 import { useAlert } from "react-alert";
 
+// Renders a listing edit form
 const ListingEditForm = () => {
   const alert = useAlert();
   const [listingData, setListingData] = useState({
@@ -59,6 +60,7 @@ const ListingEditForm = () => {
   const imageSevenInput = useRef(null);
   const imageEightInput = useRef(null);
 
+  // Function to get listing data and populate form
   useEffect(() => {
     const handleMount = async () => {
       try {
@@ -108,6 +110,7 @@ const ListingEditForm = () => {
     handleMount();
   }, [history, id]);
 
+  // Handles change on from
   const handleChange = (event) => {
     setListingData({
       ...listingData,
@@ -115,6 +118,7 @@ const ListingEditForm = () => {
     });
   };
 
+  // Handles image change on form
   const handleChangeImage = (event) => {
     if (event.target.files.length) {
       setListingData({
@@ -124,6 +128,7 @@ const ListingEditForm = () => {
     }
   };
 
+  // Function to submit from data
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();

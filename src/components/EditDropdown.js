@@ -13,6 +13,7 @@ const Bars = React.forwardRef(({ onClick }, ref) => (
   />
 ));
 
+//Renders a dropdown to edit and delete listings
 export const EditDropdown = ({ handleEdit, handleDelete }) => {
   return (
     <Dropdown drop="right">

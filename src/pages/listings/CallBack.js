@@ -8,6 +8,7 @@ import {
 } from "react-router-dom/cjs/react-router-dom.min";
 import { useAlert } from "react-alert";
 
+// Renders a call back component with a form
 const CallBack = (props) => {
   const alert = useAlert();
   const [data, setData] = useState({
@@ -24,12 +25,15 @@ const CallBack = (props) => {
   const history = useHistory();
   const [errors, setErrors] = useState({});
 
+  // Handles change in form
   const handleChange = (event) => {
     setData({
       ...data,
       [event.target.name]: event.target.value,
     });
   };
+
+  // Function to submit form data
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();

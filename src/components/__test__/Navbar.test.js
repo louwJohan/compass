@@ -4,6 +4,9 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { CurrentUserProvider } from "../../context/CurrentUserContext";
 import { ProfileDataProvider } from "../../context/ProfileDataContext";
 
+/*
+Test to render nav bar, as logged in user and as not logged in
+ */
 test("render NavBar", () => {
   render(
     <Router>

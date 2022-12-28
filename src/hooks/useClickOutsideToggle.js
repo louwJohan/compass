@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
+//Hook to help close navbar when in mobile
 const useClickOutsideToggle = () => {
   const [expanded, setExpanded] = useState(false);
   const ref = useRef(null);

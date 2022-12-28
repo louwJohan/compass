@@ -9,6 +9,7 @@ import axios from "axios";
 import Alert from "react-bootstrap/Alert";
 import { useAlert } from "react-alert";
 
+// Renders Sign up form
 const SignUpForm = () => {
   const [signUpData, setSignUpData] = useState({
     username: "",
@@ -19,6 +20,8 @@ const SignUpForm = () => {
   const { username, password1, password2 } = signUpData;
   const history = useHistory();
   const alert = useAlert();
+
+  // handles change in sign up form
   const handleChange = (event) => {
     setSignUpData({
       ...signUpData,
@@ -26,6 +29,7 @@ const SignUpForm = () => {
     });
   };
 
+  // Function to send data of sign up form
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {

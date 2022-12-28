@@ -5,11 +5,13 @@ import { NavLink } from "react-router-dom";
 import Asset from "../../components/Asset";
 import appStyles from "../../App.module.css";
 
+// Renders the message detail component on profile page
 const MessageDetail = ({ singleId }) => {
   const [messageData, setMessageData] = useState();
   const [hasLoaded, setHasLoaded] = useState(false);
 
   useEffect(() => {
+    // Function to fetch the message data
     const fetchMessages = async () => {
       try {
         const { data } = await axiosReq.get(`/messages/${singleId}`);
