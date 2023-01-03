@@ -17,8 +17,9 @@ export const ProfileDataProvider = ({ children }) => {
   //Async function to make api call to get profile data
   useEffect(() => {
     const fetchProfile = async () => {
+      const id = currentUser?.profile_id;
       try {
-        const { data } = await axiosReq(`/profiles/${currentUser.profile_id}`);
+        const { data } = await axiosReq(`/profiles/${id}`);
         setProfileData(data);
         setIsAuth(true);
       } catch (err) {
