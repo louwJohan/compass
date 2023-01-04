@@ -9,6 +9,7 @@ import { useHistory } from "react-router";
 import Alert from "react-bootstrap/Alert";
 import { useSetCurrentUser } from "../../context/CurrentUserContext";
 import { useAlert } from "react-alert";
+import { setTokenTimestamp } from "../../utils/utils";
 
 // Renders sign in page
 const SignInForm = () => {
@@ -39,6 +40,7 @@ const SignInForm = () => {
         password: password,
       });
       setCurrentUser(data.user);
+      setTokenTimestamp(data);
       alert.show(`Welcome back ${username}`);
       history.push("/");
     } catch (err) {

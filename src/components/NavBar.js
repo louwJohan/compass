@@ -14,6 +14,7 @@ import Avatar from "../components/Avatar.js";
 import compass from "../assets/compass.png";
 import { useProfileData } from "../context/ProfileDataContext";
 import { useAlert } from "react-alert";
+import { removeTokenTimestamp } from "../utils/utils";
 
 /*
  Renders navbar for logged in user and users that is not
@@ -31,6 +32,7 @@ const NavBar = () => {
     try {
       await axios.post("dj-rest-auth/logout/");
       setCurrentUser(null);
+      removeTokenTimestamp();
       alert.show("Thank you for using Compass");
     } catch (err) {
       console.log(err);
