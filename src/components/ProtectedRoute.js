@@ -16,7 +16,7 @@ const ProtectedRoute = ({ children }) => {
   useLayoutEffect(() => {
     setTimeout(() => {
       setHasLoaded(true);
-    }, 2000);
+    }, 3000);
   }, []);
 
   return (
