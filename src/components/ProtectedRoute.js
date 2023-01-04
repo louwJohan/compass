@@ -1,5 +1,5 @@
 import React, { useState, useLayoutEffect } from "react";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import { useProfileData } from "../context/ProfileDataContext";
 import Asset from "./Asset";
 
@@ -7,7 +7,6 @@ import Asset from "./Asset";
 const ProtectedRoute = ({ children }) => {
   const userLogin = useProfileData();
   const [hasLoaded, setHasLoaded] = useState();
-  const history = useHistory();
 
   /*
    Function to delay loading of page to wait for async function
@@ -22,7 +21,7 @@ const ProtectedRoute = ({ children }) => {
   return (
     <>
       {hasLoaded ? (
-        <> {userLogin.isAuth ? children : history.push("/signin")}</>
+        <> {userLogin.isAuth ? children : <Redirect push to="/signin" />}</>
       ) : (
         <Asset spinner />
       )}

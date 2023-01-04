@@ -46,7 +46,7 @@ const CallBack = (props) => {
     formData.append("phone_number", phone_number);
     try {
       await axiosReq.post("/messages/", formData);
-      history.push("/buy");
+      history.goBack();
       alert.show("Thank you! Your message will be sent to the listing owner!");
     } catch (err) {
       console.log(err);

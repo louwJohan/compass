@@ -24,7 +24,7 @@ const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
   const { expanded, setExpanded, ref } = useClickOutsideToggle();
-  const { profileData } = useProfileData();
+  const { profileData, setIsAuth } = useProfileData();
   const alert = useAlert();
 
   // Function to log user out
@@ -32,6 +32,7 @@ const NavBar = () => {
     try {
       await axios.post("dj-rest-auth/logout/");
       setCurrentUser(null);
+      setIsAuth(false);
       removeTokenTimestamp();
       alert.show("Thank you for using Compass");
     } catch (err) {

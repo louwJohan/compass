@@ -13,7 +13,6 @@ export const ProfileDataProvider = ({ children }) => {
   const [isAuth, setIsAuth] = useState(false);
   const [profileData, setProfileData] = useState();
   const url = useParams();
-  console.log(url);
 
   //Async function to make api call to get profile data
   useEffect(() => {
@@ -29,8 +28,9 @@ export const ProfileDataProvider = ({ children }) => {
     fetchProfile();
   }, [currentUser, url]);
 
+  console.log(isAuth);
   return (
-    <ProfileDataContext.Provider value={{ profileData, isAuth }}>
+    <ProfileDataContext.Provider value={{ profileData, isAuth, setIsAuth }}>
       {children}
     </ProfileDataContext.Provider>
   );
