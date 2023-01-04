@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../api/axiosDefaults";
 import { useCurrentUser } from "./CurrentUserContext";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 const ProfileDataContext = createContext();
 
@@ -11,25 +11,32 @@ export const useProfileData = () => useContext(ProfileDataContext);
 export const ProfileDataProvider = ({ children }) => {
   const currentUser = useCurrentUser();
   const [isAuth, setIsAuth] = useState(false);
-  const [profileDataNew, setProfileData] = useState();
+  const [profileData, setProfileData] = useState();
+
   const url = useParams();
 
   //Async function to make api call to get profile data
   useEffect(() => {
     const fetchProfile = async () => {
-      const id = currentUser?.profile_id;
       try {
-        const { data } = await axiosReq(`/profiles/${id}`);
-        setProfileData(data);
-        setIsAuth(true);
+        if (currentUser) {
+          const { data } = await axiosReq(
+            `/profiles/${currentUser?.profile_id}`
+          );
+          setProfileData(data);
+          setIsAuth(true);
+        } else {
+          console.log("Unauthorized");
+        }
       } catch (err) {
         console.log(err);
       }
     };
     fetchProfile();
   }, [currentUser, url]);
+
   return (
-    <ProfileDataContext.Provider value={{ profileDataNew, isAuth }}>
+    <ProfileDataContext.Provider value={{ profileData, isAuth }}>
       {children}
     </ProfileDataContext.Provider>
   );

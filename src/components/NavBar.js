@@ -23,7 +23,7 @@ const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
   const { expanded, setExpanded, ref } = useClickOutsideToggle();
-  const { profileDataNew } = useProfileData();
+  const { profileData } = useProfileData();
   const alert = useAlert();
 
   // Function to log user out
@@ -51,11 +51,7 @@ const NavBar = () => {
           Sign out
         </NavLink>
         <NavLink to="/profile" className="ml-auto">
-          <Avatar
-            src={profileDataNew?.profile_image}
-            text="Profile"
-            height={40}
-          />
+          <Avatar src={profileData?.profile_image} text="Profile" height={40} />
         </NavLink>
       </Nav>
     </>
