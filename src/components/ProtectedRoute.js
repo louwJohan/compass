@@ -22,7 +22,7 @@ const ProtectedRoute = ({ children }) => {
   return (
     <>
       {hasLoaded ? (
-        <>{userLogin.isAuth ? children : history.push("/signin")}</>
+        <> {userLogin.isAuth ? children : history.push("/signin")}</>
       ) : (
         <Asset spinner />
       )}

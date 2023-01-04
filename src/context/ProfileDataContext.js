@@ -19,21 +19,15 @@ export const ProfileDataProvider = ({ children }) => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        if (currentUser) {
-          const { data } = await axiosReq(
-            `/profiles/${currentUser?.profile_id}`
-          );
-          setProfileData(data);
-          setIsAuth(true);
-        } else {
-          console.log("Unauthorized");
-        }
+        const { data } = await axiosReq(`/profiles/${currentUser?.profile_id}`);
+        setProfileData(data);
+        setIsAuth(true);
       } catch (err) {
         console.log(err);
       }
     };
     fetchProfile();
-  }, [currentUser, url]);
+  }, [currentUser, profileData]);
 
   return (
     <ProfileDataContext.Provider value={{ profileData, isAuth }}>
