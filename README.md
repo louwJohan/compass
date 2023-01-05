@@ -44,13 +44,13 @@ Compass is a social media type property listing site. You can list your property
   - As a **Site User** I can **edit my profile** so that **I can remove a photo or add a new one, or change my name**
 * US11: Request a Call back
   - As a **Site User** I can **request a call back** so that **I can get more info or book a viewing**
-* US12: View Rantals
+* US12: View Rentals
   - As a **Sit User** I can **view rentals** so that **I can be sure all the properties I am viewing is only rentals**
-* US14: View properties for sale
+* US13: View properties for sale
   - As a **Site User** I can **navigate to properties that is for sale** so that **I can have access to only for sale properties**
-* US15: Search
-  - As a **Site User** I can **have access to a search feature** so that **I can only see the properties I wantto see**
-* US16 Messages
+* US14: Search
+  - As a **Site User** I can **have access to a search feature** so that **I can only see the properties I want to see**
+* US15: Messages
   - As a **Site User** I can **view all the messages that was sent to me** so that **I can manage the call backs**
 
 ## Features
@@ -195,30 +195,37 @@ Balsamiq was used to create the wire frames for the project and was used as a gu
 -   [GitHub:](https://github.com/) is used as the respository for the project code after being pushed from Git. In addition, for this project GitHub was used for the agile development aspect through the use of User Stories (GitHub Issues) and tracking them on a Kanban board.
 -   [Balsamiq:](https://balsamiq.com/) was used to create the wireframes during the design process.
 -   [Django Rest Framework](https://www.django-rest-framework.org/) was used for the backend of the project
--   [Bootstrap](https://getbootstrap.com/) was used to build responsive web pages
+-   [React Bootstrap](https://react-bootstrap.github.io/) was used to build responsive web pages
 -   [Gunicorn](https://gunicorn.org/) was used as the Web Server to run Django on Heroku
 -   [dj_database_url](https://pypi.org/project/dj-database-url/) library used to allow database urls to connect to the postgres db
--   [psycopg2](https://pypi.org/project/psycopg2/) database adapter used to support the connection to the postgres db
 -   [Cloudinary](https://cloudinary.com/) used to store the images used by the application
 -   [Django allauth](https://django-allauth.readthedocs.io/en/latest/index.html) used for account registration and authentication
 -   [React.js](https://reactjs.org/) used for the front end of the project.
 
-## Testing
-
-### Validator Testing 
+## Testing 
 
 ### Automated Testing
 
-React testing suite was used for testing the components. Mock service worker was install to mock the api calls. All tests that were written has passed.
+React testing suite was used for testing the components. Mock service worker was install to mock the api calls.
+The Following tests were written
+- Test to display home page
+- Test to display all the listings for sale
+- Test to display changes in navbar for logged in users and unauthorized users 
+- Test to display profile page
+- Test to display create listing form
+- Test to display sign in form
+- Test to display sign out form
+All tests that were written has passed.
 
 ### Browser Compatibility
 
 - Chrome DevTools was used to test the responsiveness of the application on different screen sizes.
+- Application was also tested on Microsoft Edge browser and on Safari on a Iphone
  
     
 ### Manual Testing Test Cases and Results
 
-- The application was tested for both site users and staff users. Recipes was added, updated and deleted. Menu add items, edit and delete items was tested. Booking was tested for two users booking at the same time for the same time slot. The reset password was tested with the email confirmation. Adding, deleting and editing closed days was tested. Customer booking and deleting was tested. All links and navigation links were tested.
+- The application was on various browsers and all features was tested the profile update, listing update, listing create, saving a listing , signing up and signing in. 
 
 ### Known bugs
 
@@ -250,6 +257,25 @@ React testing suite was used for testing the components. Mock service worker was
 - The live link for this project is (https://compass-real-estate.herokuapp.com/)
 
 ### Final Deployment steps
+In your package.json file, you're going to make the following changes to your scripts property
+1. Add a prebuild command for Heroku that will run the start script:
+"heroku-prebuild": "npm install -g serve"
+2. Add a script command that will create and run the development version:
+"dev": "react-scripts start"
+3. The next thing to do is to modify the start command with:
+"start": "serve -s build"
+What this means, is that the app will now run in production and, then, when you are working in gitpod, you will use the following command, in place of npm start:
+npm run dev
+so final script should look like:
+"scripts": {
+"heroku-prebuild": "npm install -g serve",
+"dev": "react-scripts start",
+"start": "serve -s build",
+"build": "react-scripts build",
+"test": "react-scripts test",
+"eject": "react-scripts eject"
+},
+4. Push to heroku / github
 
 
 
